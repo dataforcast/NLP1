@@ -1,0 +1,413 @@
+# <center><h1>TOXIC CONVERSATIONS CLASSIFICATION</h1></center>
+
+<hr>
+
+<br>
+<h1><font size=10>Abstract</font></h1>
+<hr>
+<font size=4>
+This project proposes to implement, as part of a Kaggle competition, a metric to evaluate a machine learning algorithm operating on a population composed of individuals classified in subgroups. These subgroups mark a social or ethnic identity of the individuals making up the population.</font>
+
+<br>
+<font size=4>
+Details of projects : <a href="URL">https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification</a>
+</font>
+
+<br>
+
+* <font size=4>
+An exploratory analysis of the corpus of texts has been conducted allowing to argue over the choice of learning model.
+</font>
+<br>
+
+<br>
+
+* <font size=4>
+Data-preparation process is described and leads to a digital representation of the input data to feed machine learning algorithm.
+
+<br>
+<br>
+
+* <font size=4>
+The study of machine learning hyper-parameters is conducted and parameters used for building learning model are selected.
+<br>
+<br>
+
+* <font size=4>
+Selected model is trained and results in term of binary classifications are exposed along with bias computation in compliance with formula described in <a href="URL">https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/overview/evaluation</a>
+<br>
+
+
+<br>
+<h2><font size=10>Project artefacts</font></h2>
+<hr>
+
+<br>
+
+* <font size=4>Project artefacts are located under <a href="URL">http://bit.ly/FBangui_Datasciences_KaggleJigsaw</font></a>
+<br>
+
+* <font size=4>These slides present the overall approach of the study : <a href="URL">
+        https://github.com/dataforcast/OC_Datascientist/blob/master/P8/report/Slides_P9_V1.pdf</font></a>
+<br>
+
+<br>
+
+<h1><font size=10>Software architecture</font></h1>
+<hr>
+
+<center><img src="./report/SwArchitecture.png" alt="Drawing" style="width: 200px;"/></center>
+<br>
+
+<br>
+<h1><font size=10>Exploratory analyis</font></h1>
+<hr>
+
+<h2><font size=5>
+Features description
+</font></h2>
+<center><img src="./report/Analysis_features.png" alt="Drawing" style="width: 200px;"/></center>
+
+
+<font size=4>
+The dataset is composed of 45 columns described as following:
+</font>
+
+<br/>
+
+* <font size=4> Toxicity indicators : these features indicates the type of toxicity</font>
+
+* <font size=4> Identities : these features indicates presence into comments of words or expressions related to an identity. Bias of predictive model will be evaluate against some of these identities.</font>
+
+* <font size=4> Misc informations : these features provide additional informations over comments.</font>
+* <font size=4> Content & target : Content are used to feed machine learning model (after a data-preparation and a digitalization process) and target are used as labels to train models.</font>
+
+</p> 
+<br>
+
+<h2><font size=5>Target distribution</font></h2>
+
+<center><img src="./report/Analysis_target.png" alt="Drawing" style="width: 200px;"/></center>
+<br>
+
+<font size=4>
+Toxicity values (named target) are ranged from 0.0 (safe comment) to 1.0 (more toxic comment).
+<br>
+<font size=4>
+Toxicity disrtribution shows unbalanced classes. Around 30% of comments have a toxicity value greater then 0.0.</font>
+<br>
+
+<font size=4>
+Note also that continuous values of toxicity are difficult to interpret and perceive distinctly for a human. E.g it is not clear to perceive how far a comment with toxicity value of 0.38 is fare from another comment with toxicity value fixed to 0.35.</font>
+</font>
+ 
+<h2><font size=5>Toxicity contributors analysis</font></h2>
+<center><img src="./report/ToxicityContributors.png" alt="Drawing" style="width: 200px;"/></center>
+<br>
+
+<font size=4>
+The group of features, named **Toxicity distribution** are analysed against target values in order to highlight associations between dependant variables and features.</font>
+
+<font size=4>This multivariate analysis shows that **identity_attack**, **obscene** and **severe_toxicity** in extruded area show a linear border of the shape of distributed points along with target. The border of the shape *increases linearly* with toxicity range of values. The fact that a dense area of points appears under the diagonal border let think that contrubution to toxicity may be due to a combinaison ot this three features.</font>
+<br>
+
+<font size=4>We note also that in non extruded area, multivariate analysis between features **identity_attack** and **obscene** expose the same kind of linearly border shape that *linearly decreases* </font>
+<br>
+
+<center><img src="./report/ToxicityContributors_2.png" alt="Drawing" style="width: 200px;"/></center>
+<br>
+
+<font size=4>On the display above, the multivariate analysis between features **insult**, **threat**, ** sexual_explicit** and **target**, over the extruded area, shows a more accentuated and dense distribution of points below the diagonal border that *linearly increases* with target values. </font>
+<br>
+
+<h2><font size=5>ANOVA over identities </font></h2>
+
+<font size=4>QUESTION: is it possible to infer a relation between toxicity and identities ?</font>
+<br>
+
+<font size=4>Identities are used in order to evaluate bias. Idea is to evaluate the contribution 
+of identities over the toxicity variance</font>
+<br>
+
+<font size=4>For doing so, ANOVA is proceeded over each one of the groups formed with identities.</font>
+<br>
+
+<font size=4>Identities values are continuous values ranged from 0.0 to 1.0. These values are reworked and are labelized with values 0,1,... 10. Such transformation allows to consider identities as formed with qualitative groups. These labelized ranges of values may be interpreted as levels of the considered identity.
+</font>
+<br>
+
+<font size=4>The labeling scheme is as following :
+</font>
+<br>
+
+<center>![Analysis_group_range_values](report/Analysis_group_range_values.png)</center>
+
+<br>
+
+<font size=4>E.g. for female identity, such transformation leads to consider 11 groups, ranged from 0 to 10, with statistics values describe below for female identity    : </font>
+<br>
+
+<center>![Analysis_stats_female_1](report/Analysis_stats_female_1.png)</center>
+<br>
+
+<font size=4>Means values are the means of toxicity computed for each group. </font>
+<br>
+
+
+<font size=4>Question : are differences between these means significant ? Is there an inferable relation between identities labels, ranged from 0 to 10, and toxicity level of a comment ?</font>
+<br>
+
+
+<font size=4>For any of the groups in the list above, **Levene** test is conducted. This test allows to validate **homodestaticity** hypothesis : variance in each group has equal value. This is the **H0  hypothesis stating over variance equality** between the groups of an identity. If Levene test is significant, considering p-value, then null hypothesis will be accepted and homodestaticity hypothesis will be valid. </font>
+<br>
+
+<font size=4>Result are produced on the figure below: </font>
+<br>
+
+<center>![Analysis_stats_1](report/Analysis_stats_1.png)<br></center>
+
+<font size=4>Levene test seems to be not significant for all identities except jewish group.  Nevertheless, for making F-stat robust considering **normality and homodestaticity hypothesis**, all groups inside each one of the identities have been sampled with the name number of observations. Then, for each identity, considering F-stat magnetude (that measures a ratio of the variability of the mean inside groups and the variability of the mean between groups) and associated p-value << 5.e-2 (that indicates how significant is the result of F-stat), test over differences of means between groups are **regarded as significant**.</font>
+<br>
+
+<font size=4>**As a conclusion of ANOVA :** </font>
+
+* <font size=4>Considering `F-stat` values for all identities, there is a significant difference between means of groups, groups organized as levels of an identity.</font>
+
+* <font size=4>Considering `R²` values for all identities, variance is very weakly explained by any idntity, leading to the conclusion that none of the identities have effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspects of correlations for couples of features `(male, female)`<font size=4> a well as </font> `(black, white)`. </font>
+<font size=4>These features show a **middle size effect** for explaing target variance.</font>
+<br>
+
+<center>![Analysis_targeted_identities_correlations](report/Analysis_targeted_identities_correlations.png)</center> 
+
+
+<font size=4>In addition, diagram belows exposes the distribution of a sample of 5000 points for identities that are taken into account for bias evaluation along with toxicity. There is no intuitive evidence of informational shape as pointed for toxicity contributors features on previous section. </font>
+<br>
+
+<center>![Analysis_Multivariate_targeted_identities](report/Analysis_Multivariate_targeted_identities.png)</center>
+
+
+<font size=4>For jewish identity, having the lowest number of observations among all other identities, the F-statistic and related p-value, respectively 2.8 and 2.e-3 shows that there is a significant difference between means of groups inside jewish identity.</font>
+<br>
+
+<font size=4>Model built based on the list of identities, allows to conclude that each identity has a significant effect over toxicity level.</font>
+<br>
+
+<font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of bservations, 214.</font>
+<br>
+
+<center>![Analysis_stats_jewish_1](report/Analysis_stats_jewish_1.png)</center>
+<br>
+
+
+<font size=4>Means show differences in between labelized groups. Are these differences significant? If yes, then it will be allowed to conclude that such groups, based on jewish identity, do explain variancy of toxicity. In that case, it will be stand that a relation between toxiciy level and jewish identity exists.</font>
+<br>
+
+<font size=4> Table below shows the result of ANOVA over jewish identity.</font>
+<br>
+
+<center>![Analysis_stats_jewish_2](report/Analysis_stats_jewish_2.png)</center>
+<br>
+
+<font size=4>ANOVA has been conducted over 214 observation and shows : </font>
+<br>
+
+
+* <font size=4>
+R² value, 1.e-2 is a weak value. Correlation between toxiciy and identity is weak. There is no **linear relation** between jewish identity and toxicity. Correlation matrix here-under supports this conclusion :
+
+</font>
+
+* <font size=4>
+From the column `P>|t|` the groups labelized 6, 7, 10 have significant difference with intercept, that is group level 0. **Post-hoc** test will allows to compare groups level 6, 7 and 10 in between each-other.
+</font>
+<br>
+
+<h2><font size=5>Conclusions over features analysis</font></h2>
+<br>
+<font size=4>
+Features have been splitted into two categories : contributors to toxicity of coments and identities.
+It has been shown that contributors to toxicity has a strong effect over the toxicity magnetude, whereas identities have a weak effect over toxicity. Unintended bias in machine learning classification comes with the fact that despite that last point, comments tend to be classified as toxic when they embedd  some identities terms or expressions.
+</font>
+<br>
+
+<font size=4>Absence of identity effects over toxicity also let think that the process involved in toxicity and identity metrics can be safely taken into account. This lead to consider as reliable comments labelization used in a supervized machine learning model.</font>
+<br>
+
+
+<font size=4>Same remark also stands for toxicity contributors. Their co-variancy behaviour along with toxicity is compliant with the intuitive sens, stating that a comment that embbeds insult terms or expressions is welling to render it toxic.</font>
+<br>
+
+<font size=4>Proper algorithms should be able to take into account the presence of toxicity contributors along with identities in comments in order to proceed to classification.
+</font>
+<br>
+
+<font size=4>Also, post-hoc tests shows no evidence of an existance of treshold effect identifying differences between means of different groups inside an identity.</font>
+
+<br>
+<h1><font size=15>Data preparation</font></h1>
+<font size=4>This process allows to transforms a corpus of comments into a digitalized representation, allowing to feed an algorithm. 
+The global process is described below :</font>
+
+<center>![DataPreparation_process](report/DataPreparation_process.png)</center>
+<br>
+
+*   <font size=4>
+    *   Spacy package is used for NLP processing. Using it, sequences of words are preserved using.<font>
+    *   Due to toxicity distribution study in previous sections, balancing dataset is required in order to ensure toxic and non toxic comments to be processed "equaly". Otherwise, contributions to cost function will be mainly due to non toxic comments that will lead to a biased prediction model. The picture above do represents a model obtained with Gradient boosting algorithm without dataset balancing. All non toxic comments are very well classified while predictions for toxic comments are not better then  random prediction leading to weak performances as shown over the RAUC curve.
+<center>![Xgboost_unbalancedDataset](report/Xgboost_unbalancedDataset.png)</center> <center>![Xgboost_unbalancedDataset_RAUC](report/Xgboost_unbalancedDataset_RAUC.png)</center>
+    *   As the result of the digitalization process, a tensor with 3 dimensions is produced, for train and validation dataset. It is represented as the figure below : 
+<center>![DataPreparation_process_digitalization_tensor](report/DataPreparation_process_digitalization_tensor.png)</center>    
+    *   Texts truncation : all tokenized texts should have the same number of tokens. This allows to feed NN algorithm with **same embedding layer size**. This operation takes place after the filtering process, for keeping the model with usefull informations. The max length size for the number of tokens has been fixed to 100. This value comes with the text word length distribution described on diagram below :
+<center>![DataAnalysis_TextLenghtDistribution](report/DataAnalysis_TextLenghtDistribution.png)</center>
+     Trunc of texts after digitalization allows to drive this process based on an objective criteria, such as magnetude of the vectors. Vectors with the smallest magnetude will be pushed out of digitalization representation. While doing so, relevant information that will contribute to decrease of loss function will be kept.
+    *   Texts padding : digitalized texts with number of tokens less then max length will be padded with zero vector.
+
+<font size=4></font>
+<br>
+
+<h2><font size=10>Word embeddings</font></h2>
+<br>
+
+<font size=4>Glove allows to use different kind of model language for Naturel Language Processing. The one used here is `en_core_web_lg`, in which, each word in vocabulary is represented as a vector in a 300 dimensions space. Words vectors have been built using web texts and comments issued from variou social networks.</font>
+
+<font size=4>A dictionary structured as `{word:glove_coefficient}` is built from Glove source.</font>
+
+<font size=4>Once built, dictionary allows to build a vector for every word 
+in vocabulary issued from tokenizer.</font><br>
+
+<font size=4>Endly, weights matrix is built from vocabulary issued from tokenizer.</font><br>
+
+<font size=4>Such process is summarized with sequences here-under :</font><br>
+
+*   <font size=4>
+    * `dict_glove_word_coeff <-- processing Glove file name`
+    * `vocabulary_word, index <-- tokenizer`
+    * `weight_vector = dict_glove_word_coeff[vocabulary_word]`
+    * `weight_matrix[index] = weight_vector`</font>
+
+
+<h2><font size=10>Features correlations</font></h2>
+<br>
+<font size=4>Statistic analysis as shown that some features expose linear correlations with toxicity values. </font>
+
+<br>
+<font size=4>Figure below shows 1000 digitalized comments with process described in previous section. t-SNE operator is applied over 3 dimensions. There is no evidence that an hyperplan exists that is able separate groups of points. </font>
+
+<center>![DataAnalysis_tsne](report/DataAnalysis_tsne.png)</center>
+
+<font size=4>On figure below, a kernel PCA operator has been applied with kernel of order 5. The kernel trick allows to process a non linear model as a linear model in an Hilbert space of larger size then the original space.</font>
+
+<center>![KernelPCA](report/KernelPCA.png) ![tSNE_KernelPCA](report/tSNE_KernelPCA.png)</center>
+
+<font size=4>The 3D reduction of model issued from kernel trick operator shows group of separated structures. The complexity of such NLP model forbids the use of linear based models.</font>
+
+
+<h1><font size=15 color='blus'>CNN classifier</font></h1>
+<br>
+<font size=4>From statistic analysis conducted in previous sections, it is shown that the presence of some type of words or expressions in a comment is correlated to the toxicity level. The problem can be formulated as the way to identity in a comment, what has been named toxicity contributors and identities and relate them to a level of toxicity. Due to that, the expected prediction model should be able to learn such relations connecting identified structures with toxicity level. </font>
+
+<font size=4>The ground problem is focused on textual structures identification. CNN architectures are famous and relevant to accomplish a such task.</font>
+
+<font size=4>In addition, a bias metric defined in <a href="URL">https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification/overview/evaluation</a> will be applied over the model in order to evaluate how fare the model is able to distinguish toxic comments  from non toxic comments that embbeds identities terms or expressions.</font>
+
+<font size=4>Rather then predict toxicity level thanks to a regression algorithm, a classifier is used to complie with the model bias evaluation.</font>
+
+
+<h2><font size=10>CNN hyper-parameters selection</font></h2>
+<br>
+<h3><font size=5>CNN hyper-parameters selection for convolutional layers</font></h3>
+<br>
+<CENTER size=30>![CNN_Structure_HyperParameters](report/CNN_Structure_HyperParameters.png)</center>
+<font size=4>These parameters are related to CNN structure : </font>
+
+*   <font size=4>The size of the convolution filters. When processing text, this parameter amounts to setting n-grams for the neighborhood of words. Such a structure in word processing is related to the semantics of words, indicating that words of the same neighborhood have the same meanings.</font>
+
+<center>![CNN_FilterSize](report/CNN_FilterSize.png)</center>
+
+*   <font size=4>The number of convolutional filters, leading to features maps. This will give the model the potential for identitying all kinds of textual structures in the corpus of comments. A single feature map identifies the same structures that may be repeated in a comment.</font><br>
+*   <font size=4>The number of convolutional layers.</font><br>
+*   <font size=4>The filter stride size. This parameter fixes the window stride for N-GRAM structures detection.</font><br>
+<center>![CNN_StrideSize](report/CNN_StrideSize.png)</center>
+
+<h3><font size=5>CNN hyper-parameters selection for dense layers</font></h3>
+
+<center>![CNN_DenseLayer_HyperParameters](report/CNN_DenseLayer_HyperParameters.png)</center>
+
+<font size=4>These parameters are related to dense layers structure and they are: </font>
+
+*   <font size=4>The number of dense layers. It has been fixed to 1.</font><br>
+
+*   <font size=4>The number of neurons in the dense layer. Dense layers after convolutional layers allows to classify features issued from convolutional layers.</font><br>
+
+<br>
+<h3><font size=5>Algorithms selection :</font></h3>
+<br>
+
+*   <font size=4>Gradient descent algorithm is RMSprop.</font><br>
+*   <font size=4>Loss function algorithm is binary cross entropy.</font><br>
+
+<h3><font size=5>CNN hyper-parameters selection for optimization :</font></h3>
+<br>
+<font size=4></font><br>
+<center>![CNN_Algorithm_HyperParameters](report/CNN_Algorithm_HyperParameters.png)</center>
+
+*   <font size=4>Dropout rate. This parameter controls the model complexity and hence, its capacity to generalization.</font><br>
+
+*   <font size=4>Learning rate. This parameter controls the speed of the learning.</font><br>
+
+*   <font size=4>L1 regularization. This parameter controls the complexity of the algorithm, hence its bility to generalize. This regularization process is applied to the cost function. Complexity regularization is achived while killing some features in the learning process. L1 regularization is knwon to be less stable as L2 regularization, because loss function convexity is impacted with L1 terms.</font><br>
+*   
+*   <font size=4>L2 regularization. This parameter controls the complexity of the algorithm, hence its bility to generalize. This regularization process is applied to the cost function</font><br>
+
+<h1><font size=15>Classification results</font></h1>
+
+<h2><font size=10>Binary classification</font></h2>
+
+<font size = 4>This step has been performed by spliting toxicy values into 2 classes : </font>
+
+*   <font size=4>
+    * 0.0 <= toxicity < 0.5 : safe comments
+    * 0.5 <= toxicity <=1.0 : toxic comments 
+</font>
+
+<h2><font size=10>Data generators</font></h2>
+
+<font size = 4>Because of memory resources issues, `DataGenerator` objects have been created and used for both, trainig an validation operations.</font>
+
+<font size = 4>Such objects allow to pump bulk of data stored on harddisk. Architecture below shows how the model works : </font>
+<center></center>
+
+<font size=4>`DataGenerator` class inherites from `keras.utils.Sequence` This allows Keras model to use object issued from this class as a source of data, pumping it iteration after iteration in the train or validation operations, until all data partitioned into files over hard disk have been processed.<font>
+<br>
+
+<font size=4>DataGenerator is created using DataPreparator object. Such objects contains all operations for data preparation and digitalization process along with configuration parameters used inside these process. This architecture allows an **automation digitalization process** to take place.</font>
+<br>
+<center>![Data_Generator_Process](report/Data_Generator_Process.png)</center>
+<font size=4>Depending on object configuration, data sources may be train dataset or validation dataset. A callback function, issued from object of type `keras.callbacks.ModelCheckpoint` allows to save the best model issued from train operation.</font>
+
+<h2><font size=10>Training / validation performances</font></h2>
+
+<font size = 4>The number of trainable parameters is closed to `715K`</font>
+<font size = 4>Model tends to overfit, despites dropout rate of `0.3`</font>
+
+
+<center>![CNN_History_Loss](report/CNN_History_Loss.png) ![CNN_History_Accuracy](report/CNN_History_Accuracy.png)</center>
+
+<h2><font size=10>Classification performances</font></h2>
+<font size = 4>Results below have been obtained with training near to <u>`100K`</u> comments and validated over closed to <u>`10K`</u> comments.</font>
+<font size = 4>Confusion matrix below shows that model is able to properly classify : 
+</font>
+
+*   <font size=4>
+    * 85% of non toxic comments
+    * 87% of toxic comments       
+</font>
+
+<br>
+<font size = 4>Area Under RO Curve is `AUC=0.86` </font>
+
+
+<center>![CNN_Classification_Performances](report/CNN_Classification_Performances.png) ![CNN_Classification_Performances_RAUC](report/CNN_Classification_Performances_RAUC.png)</center>
+
+<h1><font size=15>Bias results</font></h1>
+
