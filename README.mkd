@@ -140,14 +140,14 @@ of identities over the toxicity variance</font>
 </font>
 <br>
 
-<center>![Analysis_group_range_values](report/Analysis_group_range_values.png)</center>
+<center><img src="./report/Analysis_group_range_values.png" alt="Drawing" style="width: 200px;"/></center>
 
 <br>
 
 <font size=4>E.g. for female identity, such transformation leads to consider 11 groups, ranged from 0 to 10, with statistics values describe below for female identity    : </font>
 <br>
 
-<center>![Analysis_stats_female_1](report/Analysis_stats_female_1.png)</center>
+<center><img src="./report/Analysis_stats_female_1.png" alt="Drawing" style="width: 200px;"/></center>
 <br>
 
 <font size=4>Means values are the means of toxicity computed for each group. </font>
@@ -163,8 +163,7 @@ of identities over the toxicity variance</font>
 
 <font size=4>Result are produced on the figure below: </font>
 <br>
-
-<center>![Analysis_stats_1](report/Analysis_stats_1.png)<br></center>
+<center><img src="./report/Analysis_stats_1.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>Levene test seems to be not significant for all identities except jewish group.  Nevertheless, for making F-stat robust considering **normality and homodestaticity hypothesis**, all groups inside each one of the identities have been sampled with the name number of observations. Then, for each identity, considering F-stat magnetude (that measures a ratio of the variability of the mean inside groups and the variability of the mean between groups) and associated p-value << 5.e-2 (that indicates how significant is the result of F-stat), test over differences of means between groups are **regarded as significant**.</font>
 <br>
@@ -176,15 +175,11 @@ of identities over the toxicity variance</font>
 * <font size=4>Considering `R²` values for all identities, variance is very weakly explained by any idntity, leading to the conclusion that none of the identities have effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspects of correlations for couples of features `(male, female)`<font size=4> a well as </font> `(black, white)`. </font>
 <font size=4>These features show a **middle size effect** for explaing target variance.</font>
 <br>
-
-<center>![Analysis_targeted_identities_correlations](report/Analysis_targeted_identities_correlations.png)</center> 
-
+<center><img src="./report/Analysis_targeted_identities_correlations.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>In addition, diagram belows exposes the distribution of a sample of 5000 points for identities that are taken into account for bias evaluation along with toxicity. There is no intuitive evidence of informational shape as pointed for toxicity contributors features on previous section. </font>
 <br>
-
-<center>![Analysis_Multivariate_targeted_identities](report/Analysis_Multivariate_targeted_identities.png)</center>
-
+<center><img src="./report/Analysis_Multivariate_targeted_identities.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>For jewish identity, having the lowest number of observations among all other identities, the F-statistic and related p-value, respectively 2.8 and 2.e-3 shows that there is a significant difference between means of groups inside jewish identity.</font>
 <br>
@@ -194,8 +189,8 @@ of identities over the toxicity variance</font>
 
 <font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of bservations, 214.</font>
 <br>
+<center><img src="./report/Analysis_stats_jewish_1.png" alt="Drawing" style="width: 200px;"/></center>
 
-<center>![Analysis_stats_jewish_1](report/Analysis_stats_jewish_1.png)</center>
 <br>
 
 
@@ -204,8 +199,7 @@ of identities over the toxicity variance</font>
 
 <font size=4> Table below shows the result of ANOVA over jewish identity.</font>
 <br>
-
-<center>![Analysis_stats_jewish_2](report/Analysis_stats_jewish_2.png)</center>
+<center><img src="./report/Analysis_stats_jewish_2.png" alt="Drawing" style="width: 200px;"/></center>
 <br>
 
 <font size=4>ANOVA has been conducted over 214 observation and shows : </font>
@@ -248,17 +242,18 @@ It has been shown that contributors to toxicity has a strong effect over the tox
 <font size=4>This process allows to transforms a corpus of comments into a digitalized representation, allowing to feed an algorithm. 
 The global process is described below :</font>
 
-<center>![DataPreparation_process](report/DataPreparation_process.png)</center>
+<center><img src="./report/DataPreparation_process.png" alt="Drawing" style="width: 200px;"/></center>
 <br>
 
 *   <font size=4>
     *   Spacy package is used for NLP processing. Using it, sequences of words are preserved using.<font>
     *   Due to toxicity distribution study in previous sections, balancing dataset is required in order to ensure toxic and non toxic comments to be processed "equaly". Otherwise, contributions to cost function will be mainly due to non toxic comments that will lead to a biased prediction model. The picture above do represents a model obtained with Gradient boosting algorithm without dataset balancing. All non toxic comments are very well classified while predictions for toxic comments are not better then  random prediction leading to weak performances as shown over the RAUC curve.
-<center>![Xgboost_unbalancedDataset](report/Xgboost_unbalancedDataset.png)</center> <center>![Xgboost_unbalancedDataset_RAUC](report/Xgboost_unbalancedDataset_RAUC.png)</center>
+<center><img src="./report/Xgboost_unbalancedDataset.png" alt="Drawing" style="width: 200px;"/><img src="./report/Xgboost_unbalancedDataset_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
+
     *   As the result of the digitalization process, a tensor with 3 dimensions is produced, for train and validation dataset. It is represented as the figure below : 
-<center>![DataPreparation_process_digitalization_tensor](report/DataPreparation_process_digitalization_tensor.png)</center>    
+<center><img src="./report/DataPreparation_process_digitalization_tensor.png" alt="Drawing" style="width: 200px;"/></center>
     *   Texts truncation : all tokenized texts should have the same number of tokens. This allows to feed NN algorithm with **same embedding layer size**. This operation takes place after the filtering process, for keeping the model with usefull informations. The max length size for the number of tokens has been fixed to 100. This value comes with the text word length distribution described on diagram below :
-<center>![DataAnalysis_TextLenghtDistribution](report/DataAnalysis_TextLenghtDistribution.png)</center>
+<center><img src="./report/DataAnalysis_TextLenghtDistribution.png" alt="Drawing" style="width: 200px;"/></center>
      Trunc of texts after digitalization allows to drive this process based on an objective criteria, such as magnetude of the vectors. Vectors with the smallest magnetude will be pushed out of digitalization representation. While doing so, relevant information that will contribute to decrease of loss function will be kept.
     *   Texts padding : digitalized texts with number of tokens less then max length will be padded with zero vector.
 
@@ -292,12 +287,11 @@ in vocabulary issued from tokenizer.</font><br>
 
 <br>
 <font size=4>Figure below shows 1000 digitalized comments with process described in previous section. t-SNE operator is applied over 3 dimensions. There is no evidence that an hyperplan exists that is able separate groups of points. </font>
-
-<center>![DataAnalysis_tsne](report/DataAnalysis_tsne.png)</center>
+<center><img src="./report/DataAnalysis_tsne.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>On figure below, a kernel PCA operator has been applied with kernel of order 5. The kernel trick allows to process a non linear model as a linear model in an Hilbert space of larger size then the original space.</font>
 
-<center>![KernelPCA](report/KernelPCA.png) ![tSNE_KernelPCA](report/tSNE_KernelPCA.png)</center>
+<center><img src="./report/KernelPCA.png" alt="Drawing" style="width: 200px;"/><img src="./report/tSNE_KernelPCA.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>The 3D reduction of model issued from kernel trick operator shows group of separated structures. The complexity of such NLP model forbids the use of linear based models.</font>
 
@@ -317,21 +311,21 @@ in vocabulary issued from tokenizer.</font><br>
 <br>
 <h3><font size=5>CNN hyper-parameters selection for convolutional layers</font></h3>
 <br>
-<CENTER size=30>![CNN_Structure_HyperParameters](report/CNN_Structure_HyperParameters.png)</center>
+<center><img src="./report/CNN_Structure_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
+
 <font size=4>These parameters are related to CNN structure : </font>
 
 *   <font size=4>The size of the convolution filters. When processing text, this parameter amounts to setting n-grams for the neighborhood of words. Such a structure in word processing is related to the semantics of words, indicating that words of the same neighborhood have the same meanings.</font>
-
-<center>![CNN_FilterSize](report/CNN_FilterSize.png)</center>
+<center><img src="./report/CNN_FilterSize.png" alt="Drawing" style="width: 200px;"/></center>
 
 *   <font size=4>The number of convolutional filters, leading to features maps. This will give the model the potential for identitying all kinds of textual structures in the corpus of comments. A single feature map identifies the same structures that may be repeated in a comment.</font><br>
 *   <font size=4>The number of convolutional layers.</font><br>
 *   <font size=4>The filter stride size. This parameter fixes the window stride for N-GRAM structures detection.</font><br>
-<center>![CNN_StrideSize](report/CNN_StrideSize.png)</center>
+<center><img src="./report/CNN_StrideSize.png" alt="Drawing" style="width: 200px;"/></center>
 
 <h3><font size=5>CNN hyper-parameters selection for dense layers</font></h3>
 
-<center>![CNN_DenseLayer_HyperParameters](report/CNN_DenseLayer_HyperParameters.png)</center>
+<center><img src="./report/CNN_DenseLayer_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
 
 <font size=4>These parameters are related to dense layers structure and they are: </font>
 
@@ -349,7 +343,7 @@ in vocabulary issued from tokenizer.</font><br>
 <h3><font size=5>CNN hyper-parameters selection for optimization :</font></h3>
 <br>
 <font size=4></font><br>
-<center>![CNN_Algorithm_HyperParameters](report/CNN_Algorithm_HyperParameters.png)</center>
+<center><img src="./report/CNN_Algorithm_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
 
 *   <font size=4>Dropout rate. This parameter controls the model complexity and hence, its capacity to generalization.</font><br>
 
@@ -382,7 +376,8 @@ in vocabulary issued from tokenizer.</font><br>
 
 <font size=4>DataGenerator is created using DataPreparator object. Such objects contains all operations for data preparation and digitalization process along with configuration parameters used inside these process. This architecture allows an **automation digitalization process** to take place.</font>
 <br>
-<center>![Data_Generator_Process](report/Data_Generator_Process.png)</center>
+<center><img src="./report/Data_Generator_Process.png" alt="Drawing" style="width: 200px;"/></center>
+
 <font size=4>Depending on object configuration, data sources may be train dataset or validation dataset. A callback function, issued from object of type `keras.callbacks.ModelCheckpoint` allows to save the best model issued from train operation.</font>
 
 <h2><font size=10>Training / validation performances</font></h2>
@@ -390,8 +385,7 @@ in vocabulary issued from tokenizer.</font><br>
 <font size = 4>The number of trainable parameters is closed to `715K`</font>
 <font size = 4>Model tends to overfit, despites dropout rate of `0.3`</font>
 
-
-<center>![CNN_History_Loss](report/CNN_History_Loss.png) ![CNN_History_Accuracy](report/CNN_History_Accuracy.png)</center>
+<center><img src="./report/CNN_History_Loss.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_History_Accuracy.png" alt="Drawing" style="width: 200px;"/></center>
 
 <h2><font size=10>Classification performances</font></h2>
 <font size = 4>Results below have been obtained with training near to <u>`100K`</u> comments and validated over closed to <u>`10K`</u> comments.</font>
@@ -406,8 +400,7 @@ in vocabulary issued from tokenizer.</font><br>
 <br>
 <font size = 4>Area Under RO Curve is `AUC=0.86` </font>
 
-
-<center>![CNN_Classification_Performances](report/CNN_Classification_Performances.png) ![CNN_Classification_Performances_RAUC](report/CNN_Classification_Performances_RAUC.png)</center>
+<center><img src="./report/CNN_Classification_Performances.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_Classification_Performances_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
 
 <h1><font size=15>Bias results</font></h1>
 
