@@ -1,0 +1,46 @@
+Ces premiers résultats montrent une limite dans les performances du modèle.
+Cette limite a problablement deux sources: 
+1) les hypothèses sous-jacentes qui ont été formulées 
+et conduisant à un biais.
+Parmi ces hypothèses : 
+    * BOW : absence de sémantique
+    * Features : l'ensemble des features n'est pas suffisante pour que le modele 
+    performe au dela des limites actuelles. En d'autres termes, l'ensemble des 
+    variables explicatives n'est pas suffisant pour extraire l'information des 
+    données de façon satisfaisante.
+    * Features : le BOW présente un modele numérique avec un très grand nombre de 
+    dimension en comparaison avec le nombre d'observations. ce fait conduit au 
+    fléau de la dimension pour lequel le nombre d'observations va être insuffisant 
+    pour capturer toute la complexité du modele mathématiques sous-jacent.
+    
+
+2) Le  déséquilibre entre les distributions des commentaires etiquetés avec un 
+score de toxicité positif et les distributées avec ce score à zéro.
+
+Pour aborder le pb du biais, une approche consiste à enrichir le modele avec les 
+informations qualitatives des sous-catégories définissant la toxicité.
+Pour ce faire, les expressions et mots ne faisant pas partie du vocabulaire vont 
+y être intégrés, en plus du vocabulaire naturel issue du langage.
+
+Pour le déséquilibre des distributions, une approche consiste a traiter 
+séparément les commentaires toxiques et non toxiques (ces derniers ayant un 
+score à zéro).
+
+L'approche TF-IDF va être substituée par le BOW dans le cadre de l'extraction 
+de features. Cette disposition vise à enrichir le niveau extractible d'information 
+du modèle de données information. 
+Les valeurs du grammage pour la configuration de l'algorithme TF-IDF 
+peuvent être testés de 1 à 5.
+
+
+L'approche Words EMbeddings, qui elle, tient compte de l'ordre des mots dans le 
+texte et définie ainsi un cadre sémantique pour chacun des mots va constituer 
+une dernière approche pour enrichir la complexité du modele en vue de le rendre 
+plus performant, tant dans la phase d'entraînement que dans la phase de généralisation.s
+
+Une autre approche consiste a considérer les commentaires toxiques commme des 
+anomalies et à détecter ces derniers et à les scorer.
+
+
+    
+    

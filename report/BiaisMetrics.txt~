@@ -1,0 +1,113 @@
+Introduction
+------------
+Ce projet propose de mettre en oeuvre, dans le cadre d'une compétition initiée
+par Kaggle, une métrique permettant d'évaluer un algorithme de ML opérant sur 
+une population composée d'individus classés en sous-groupes.
+
+Ces sous-groupes reflètent l'identité sociale ou ethnique des individus composant 
+la population.
+
+La prise en compte de ces sous-groupes (ou identités) dans un algorithme de Machine 
+Learning de classement ou de prédiction induit un biais, le biais involontaire.
+A l'origine de ce biais, le déséquilibre de la distribution des classes d'identité 
+dans le dataset.
+
+L'évaluation de cette métrique sur un algorthme de M.L. est fait avec un dataset 
+composé de commentaires issus de réseaux sociaux. Ces commentaires sont étiquettés avec 
+des valeurs reflétant la toxicité des commentaires. Ces avleurs vont de 0 à 1. 
+Plus grande est la valeur plus toxique est le commentaire.
+
+Cette métrique permet d'évaluer la qualité d'un modele de machine learning, 
+en matière de classification ou de regression.
+
+
+Le biais involontaire
+------------------------------
+La toxicité des commentaires est évaluée par des modérateurs. Ces derniers, 
+pour l'objectivité de l'évaluation, identifient dans un 
+commentaire les mots ou expressions qui référencent des identités.
+Ce processus d'évaluation, basé sur l'appréciation du modérateur, introduit un 
+biais.
+
+La métrique
+-----------
+Afin de prédire la toxicité des commentaires sur un large corpus de textes, un 
+algorithme de machine learning est entraîné sur la base des évluations des 
+modérateurs.
+
+La métrique utilisée ici permet d'évaluer l'algorithme à l'aune de ce biais.
+
+
+C'est une mesure de l'éthique du modèle. Cette métrique du biais mesure la 
+dérive des prédictions du modèle quant aux identités référencées dans les 
+commentaires.
+
+La volonté de prendre en compte les identités mentionnées dans les commentaires 
+pour en prédire la toxicité est motivée par l'évaaluation des performances de 
+prédiction des modèles. Il devient ainsi possible d'évaluer à quel point un 
+modele prédit ou pas comme toxique un commentaire en présence de termes mentionnant 
+des identités.
+
+Le calcul de la métrique
+------------------------
+Le calcul se base  les taux de faux positifs et de faux négatifs 
+pour chacune des identités représentés dans le modele. Le biais est donc évalué 
+
+
+Hypothèses
+-----------
+L'étiquatage du dataset, pour les niveaux de toxicité et les identités,  
+est considéré comme fiable. Un commentaie peut être etiquetté par plusieurs 
+modérateurs. Tous les étiquetages sont considérés comme fiables, indépendament 
+du nombre de modérateurs.
+
+
+	bnsp_auc	bpsn_auc	subgroup	subgroup_auc	subgroup_size
+	
+5	0.947862	0.805555	muslim	    0.818181	    4261
+7	0.958519	0.785189	white	    0.821673	    5015
+6	0.959149	0.779959	black	    0.821964	    2958
+
+2	0.955701	0.793160	homosexual_ 0.826999	    2209
+                            gay_
+                            or_
+                            lesbian	    
+4	0.934687	0.862453	jewish	    0.854121	    1563
+
+8	0.946230	0.845690	psychiatric 0.867229	    964
+                            or_mental_
+                            illness	    
+                            
+1	0.931124	0.885238	female	    0.880461	    10789
+0	0.945799	0.870465	male	    0.887908	    8823
+3	0.911606	0.916216	christian	0.892852	    8246
+
+La métriqeu proposée repose sur trois composantes issues du calcul AUC 
+par identité. Chacune de ces métriques calcule la performance du modele par 
+rapport a une identité.
+
+AUC : classement des observations + et -.
+La performance du modele à classerdes commentaires en toxiques / non toxiques 
+est mesuré pour chacune des identités. 
+Une metrique AUC est donc appliquée pour chaque identité, appelé sous-groupe, 
+en regard du restant des données, appelé "background".
+
+
+sles performances AUC du modele est 
+mesuré en prenant en compte le reste des données.
+
+
+ le biais 
+Il existe différentes metriques pour le biais involantaire.
+
+Elles consistent a calculer des performances de modeles sur chacun des sous-groupes 
+séparement.
+
+
+Metrique qui est agnostique aux seuils : aire sous ROC (AUC-ROC)
+
+A partir d'un seuil donné, on distingue le observtions + de celles qui sont -
+
+La metrique mise en peuvre ici consiste a comparer les performances d'un sous-groupe 
+au reste des données.
+

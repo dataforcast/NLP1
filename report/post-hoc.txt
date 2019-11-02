@@ -1,0 +1,263 @@
+Male
+Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+=======================================================
+ group1   group2  meandiff p-adj   lower  upper  reject
+-------------------------------------------------------
+ level_0  level_1   0.029   0.001   0.011 0.0469   True
+ level_0  level_2   0.0349  0.001   0.017 0.0529   True
+ level_0  level_3   0.0572  0.001  0.0393 0.0752   True
+ level_0  level_4   0.0567  0.001  0.0387 0.0746   True
+ level_0  level_5   0.0472  0.001  0.0292 0.0651   True
+ level_0  level_6   0.0548  0.001  0.0369 0.0727   True
+ level_0  level_7   0.0499  0.001   0.032 0.0679   True
+ level_0  level_8   0.0429  0.001   0.025 0.0608   True
+ level_0  level_9   0.0522  0.001  0.0342 0.0701   True
+ level_0  level_10  0.0504  0.001  0.0325 0.0683   True
+ 
+ level_1  level_3   0.0283  0.001  0.0103 0.0462   True
+ level_1  level_4   0.0277  0.001  0.0098 0.0456   True
+ level_1  level_5   0.0182 0.0431  0.0003 0.0361   True
+ level_1  level_6   0.0258  0.001  0.0079 0.0438   True
+ level_1  level_7    0.021 0.0078   0.003 0.0389   True
+ level_1  level_9   0.0232 0.0016  0.0053 0.0411   True
+ level_1  level_10  0.0214 0.0056  0.0035 0.0394   True
+ 
+ level_2  level_3   0.0223 0.0031  0.0044 0.0402   True
+ level_2  level_4   0.0217 0.0046  0.0038 0.0397   True
+ level_2  level_6   0.0199 0.0157   0.002 0.0378   True
+-------------------------------------------------------
+
+Female
+Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+========================================================
+ group1   group2  meandiff p-adj   lower   upper  reject
+--------------------------------------------------------
+ level_0  level_1   0.0509  0.001  0.0312  0.0707   True
+ level_0 level_10   0.0381  0.001  0.0184  0.0578   True
+ level_0  level_2   0.0272  0.001  0.0075   0.047   True
+ level_0  level_3   0.0333  0.001  0.0135   0.053   True
+ level_0  level_4   0.0457  0.001  0.0259  0.0654   True
+ level_0  level_5   0.0326  0.001  0.0128  0.0523   True
+ level_0  level_6   0.0249 0.0024  0.0051  0.0446   True
+ level_0  level_7   0.0332  0.001  0.0135   0.053   True
+ level_0  level_8   0.0308  0.001  0.0111  0.0506   True
+ level_0  level_9   0.0358  0.001   0.016  0.0555   True
+
+ level_1  level_2  -0.0237 0.0053 -0.0434  -0.004   True
+ level_1  level_6  -0.0261 0.0011 -0.0458 -0.0063   True
+ level_1  level_8  -0.0201  0.042 -0.0398 -0.0003   True
+ 
+ level_4  level_6  -0.0208 0.0289 -0.0405 -0.0011   True
+--------------------------------------------------------
+
+homosexual_gay_or_lesbian
+ Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+========================================================
+ group1   group2  meandiff p-adj   lower   upper  reject
+--------------------------------------------------------
+ level_0  level_1   0.0698  0.001  0.0291  0.1105   True
+ level_0  level_2   0.0696  0.001  0.0289  0.1103   True
+ level_0  level_3   0.0653  0.001  0.0245   0.106   True
+ level_0  level_4   0.0741  0.001  0.0334  0.1148   True
+ level_0  level_5   0.0841  0.001  0.0434  0.1248   True
+ level_0  level_6   0.1257  0.001   0.085  0.1664   True
+ level_0  level_7   0.1406  0.001  0.0999  0.1813   True
+ level_0  level_8    0.171  0.001  0.1303  0.2118   True
+ level_0  level_9   0.1778  0.001  0.1371  0.2185   True
+ level_0 level_10   0.1994  0.001  0.1587  0.2401   True
+ 
+ level_1  level_6   0.0559  0.001  0.0152  0.0966   True
+ level_1  level_7   0.0708  0.001  0.0301  0.1115   True
+ level_1  level_8   0.1012  0.001  0.0605  0.1419   True
+ level_1  level_9    0.108  0.001  0.0673  0.1487   True
+ level_1 level_10   0.1296  0.001  0.0889  0.1703   True
+
+ level_2  level_6   0.0561  0.001  0.0154  0.0968   True
+ level_2  level_7   0.0711  0.001  0.0304  0.1118   True
+ level_2  level_8   0.1015  0.001  0.0608  0.1422   True
+ level_2  level_9   0.1082  0.001  0.0675   0.149   True
+ 
+ level_3  level_6   0.0604  0.001  0.0197  0.1011   True
+ level_3  level_7   0.0754  0.001  0.0347  0.1161   True
+ level_3  level_8   0.1058  0.001  0.0651  0.1465   True
+ level_3  level_9   0.1126  0.001  0.0719  0.1533   True
+ 
+ level_4  level_6   0.0516 0.0022  0.0109  0.0923   True
+ level_4  level_7   0.0665  0.001  0.0258  0.1072   True
+ level_4  level_8   0.0969  0.001  0.0562  0.1376   True
+ level_4  level_9   0.1037  0.001   0.063  0.1444   True
+ 
+ level_5  level_6   0.0416 0.0406  0.0009  0.0823   True
+ level_5  level_7   0.0565  0.001  0.0158  0.0972   True
+ level_5  level_8   0.0869  0.001  0.0462  0.1276   True
+ level_5  level_9   0.0937  0.001   0.053  0.1344   True
+ 
+ level_6  level_8   0.0454 0.0149  0.0047  0.0861   True
+ level_6  level_9   0.0521 0.0019  0.0114  0.0928   True
+ 
+level_10  level_2  -0.1299  0.001 -0.1706 -0.0892   True
+level_10  level_3  -0.1342  0.001 -0.1749 -0.0935   True
+level_10  level_4  -0.1253  0.001  -0.166 -0.0846   True
+level_10  level_5  -0.1153  0.001  -0.156 -0.0746   True
+level_10  level_6  -0.0737  0.001 -0.1144  -0.033   True
+level_10  level_7  -0.0588  0.001 -0.0995 -0.0181   True
+--------------------------------------------------------
+
+Christian
+
+  Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+========================================================
+ group1   group2  meandiff p-adj   lower   upper  reject
+--------------------------------------------------------
+ level_0  level_1   0.0432  0.001  0.0244   0.062   True
+ level_0  level_2  -0.0333  0.001 -0.0521 -0.0145   True
+ level_0  level_3  -0.0224 0.0059 -0.0413 -0.0036   True
+ level_0  level_4  -0.0421  0.001 -0.0609 -0.0232   True
+ level_0  level_5  -0.0411  0.001 -0.0599 -0.0223   True
+ level_0  level_6   -0.033  0.001 -0.0518 -0.0142   True
+ level_0  level_7  -0.0227 0.0051 -0.0415 -0.0038   True
+ 
+ level_1  level_2  -0.0765  0.001 -0.0953 -0.0577   True
+ level_1  level_3  -0.0657  0.001 -0.0845 -0.0468   True
+ level_1  level_4  -0.0853  0.001 -0.1041 -0.0665   True
+ level_1  level_5  -0.0843  0.001 -0.1032 -0.0655   True
+ level_1  level_6  -0.0762  0.001 -0.0951 -0.0574   True
+ level_1  level_7  -0.0659  0.001 -0.0847  -0.047   True
+ level_1  level_8  -0.0455  0.001 -0.0643 -0.0266   True
+ level_1  level_9  -0.0501  0.001 -0.0689 -0.0313   True
+ level_1 level_10  -0.0369  0.001 -0.0557  -0.018   True
+
+ level_2  level_8   0.0311  0.001  0.0122  0.0499   True
+ level_2  level_9   0.0264  0.001  0.0076  0.0453   True
+ 
+ level_3  level_4  -0.0196 0.0326 -0.0385 -0.0008   True
+ level_3  level_8   0.0202 0.0237  0.0014   0.039   True
+ 
+ level_4  level_7   0.0194 0.0367  0.0006  0.0382   True
+ level_4  level_8   0.0398  0.001   0.021  0.0586   True
+ level_4  level_9   0.0352  0.001  0.0164   0.054   True
+ 
+ level_5  level_8   0.0389  0.001    0.02  0.0577   True
+ level_5  level_9   0.0342  0.001  0.0154  0.0531   True
+ 
+ level_6  level_8   0.0308  0.001  0.0119  0.0496   True
+ level_6  level_9   0.0261  0.001  0.0073   0.045   True
+ 
+ level_7  level_8   0.0204 0.0209  0.0016  0.0392   True
+ 
+level_10  level_2  -0.0397  0.001 -0.0585 -0.0208   True
+level_10  level_3  -0.0288  0.001 -0.0476   -0.01   True
+level_10  level_4  -0.0484  0.001 -0.0672 -0.0296   True
+level_10  level_5  -0.0475  0.001 -0.0663 -0.0286   True
+level_10  level_6  -0.0394  0.001 -0.0582 -0.0205   True
+level_10  level_7   -0.029  0.001 -0.0478 -0.0102   True
+--------------------------------------------------------
+
+Jewish
+Multiple Comparison of Means - Tukey HSD, FWER=0.05  
+=======================================================
+ group1   group2  meandiff p-adj   lower  upper  reject
+-------------------------------------------------------
+ level_0 level_10   0.0845 0.0021  0.0181 0.1509   True
+ level_0  level_7   0.0748 0.0129  0.0084 0.1412   True
+ level_0  level_9   0.0928  0.001  0.0265 0.1592   True
+ level_5  level_9   0.0715 0.0224  0.0052 0.1379   True
+-------------------------------------------------------
+
+muslim
+Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+========================================================
+ group1   group2  meandiff p-adj   lower   upper  reject
+--------------------------------------------------------
+ level_0  level_1   0.0474  0.001  0.0148  0.0801   True
+ level_0  level_2   0.0564  0.001  0.0238  0.0891   True
+ level_0  level_3    0.077  0.001  0.0444  0.1097   True
+ level_0  level_4   0.0857  0.001   0.053  0.1183   True
+ level_0  level_5   0.1148  0.001  0.0821  0.1474   True
+ level_0  level_6   0.1027  0.001    0.07  0.1354   True
+ level_0  level_7   0.1024  0.001  0.0697   0.135   True
+ level_0  level_8   0.1162  0.001  0.0835  0.1488   True
+ level_0  level_9   0.1274  0.001  0.0947  0.1601   True
+ level_0 level_10   0.1457  0.001   0.113  0.1783   True
+ 
+ level_1  level_4   0.0382 0.0078  0.0055  0.0709   True
+ level_1  level_5   0.0673  0.001  0.0346     0.1   True
+ level_1  level_6   0.0552  0.001  0.0226  0.0879   True
+ level_1  level_7   0.0549  0.001  0.0222  0.0876   True
+ level_1  level_8   0.0687  0.001  0.0361  0.1014   True
+ level_1  level_9   0.0799  0.001  0.0473  0.1126   True
+ level_1 level_10   0.0982  0.001  0.0655  0.1309   True
+ 
+ level_2  level_5   0.0583  0.001  0.0256   0.091   True
+ level_2  level_6   0.0462  0.001  0.0136  0.0789   True
+ level_2  level_7   0.0459  0.001  0.0132  0.0786   True
+ level_2  level_8   0.0597  0.001   0.027  0.0924   True
+ level_2  level_9   0.0709  0.001  0.0383  0.1036   True
+
+ level_3  level_5   0.0377 0.0093   0.005  0.0704   True
+ level_3  level_8   0.0391 0.0055  0.0065  0.0718   True
+ level_3  level_9   0.0504  0.001  0.0177   0.083   True
+
+ level_4  level_9   0.0417  0.002  0.0091  0.0744   True
+ 
+level_10  level_2  -0.0892  0.001 -0.1219 -0.0565   True
+level_10  level_3  -0.0686  0.001 -0.1013  -0.036   True
+level_10  level_4    -0.06  0.001 -0.0927 -0.0273   True
+level_10  level_6   -0.043 0.0012 -0.0757 -0.0103   True
+level_10  level_7  -0.0433  0.001  -0.076 -0.0106   True
+--------------------------------------------------------
+
+black
+========================================================
+ group1   group2  meandiff p-adj   lower   upper  reject
+--------------------------------------------------------
+ level_0  level_1   0.0858  0.001  0.0471  0.1244   True
+ level_0  level_2   0.0683  0.001  0.0296  0.1069   True
+ level_0  level_3   0.0898  0.001  0.0511  0.1284   True
+ level_0  level_4   0.0808  0.001  0.0422  0.1194   True
+ level_0  level_5   0.1032  0.001  0.0645  0.1418   True
+ level_0  level_6   0.1178  0.001  0.0791  0.1564   True
+ level_0  level_7   0.1339  0.001  0.0953  0.1726   True
+ level_0  level_8   0.1733  0.001  0.1346  0.2119   True
+ level_0  level_9   0.1708  0.001  0.1321  0.2094   True
+ level_0 level_10   0.2273  0.001  0.1886  0.2659   True
+ 
+ level_1 level_10   0.1415  0.001  0.1028  0.1801   True
+ level_1  level_7   0.0481  0.003  0.0095  0.0868   True
+ level_1  level_8   0.0875  0.001  0.0488  0.1261   True
+ level_1  level_9    0.085  0.001  0.0463  0.1236   True
+ 
+ level_2  level_6   0.0495 0.0019  0.0109  0.0882   True
+ level_2  level_7   0.0657  0.001   0.027  0.1043   True
+ level_2  level_8    0.105  0.001  0.0664  0.1436   True
+ level_2  level_9   0.1025  0.001  0.0639  0.1411   True
+ 
+ level_3  level_7   0.0441 0.0108  0.0055  0.0828   True
+ level_3  level_8   0.0835  0.001  0.0448  0.1221   True
+ level_3  level_9    0.081  0.001  0.0423  0.1196   True
+ 
+ level_4  level_7   0.0531  0.001  0.0145  0.0918   True
+ level_4  level_8   0.0925  0.001  0.0538  0.1311   True
+ level_4  level_9     0.09  0.001  0.0513  0.1286   True
+ 
+ level_5  level_8   0.0701  0.001  0.0315  0.1088   True
+ level_5  level_9   0.0676  0.001   0.029  0.1062   True
+
+ level_6  level_8   0.0555  0.001  0.0168  0.0941   True
+ level_6  level_9    0.053  0.001  0.0143  0.0916   True
+
+ level_7  level_8   0.0394 0.0417  0.0007   0.078   True
+ 
+level_10  level_2   -0.159  0.001 -0.1977 -0.1204   True
+level_10  level_3  -0.1375  0.001 -0.1761 -0.0989   True
+level_10  level_4  -0.1465  0.001 -0.1851 -0.1078   True
+level_10  level_5  -0.1241  0.001 -0.1628 -0.0855   True
+level_10  level_6  -0.1095  0.001 -0.1481 -0.0708   True
+level_10  level_7  -0.0934  0.001  -0.132 -0.0547   True
+level_10  level_8   -0.054  0.001 -0.0927 -0.0154   True
+level_10  level_9  -0.0565  0.001 -0.0952 -0.0179   True
+
+--------------------------------------------------------
+
+
+
