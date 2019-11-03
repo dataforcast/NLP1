@@ -172,7 +172,7 @@ of identities over the toxicity variance</font>
 
 * <font size=4>Considering `F-stat` values for all identities, there is a significant difference between means of groups, groups organized as levels of an identity.</font>
 
-* <font size=4>Considering `R²` values for all identities, variance is very weakly explained by any idntity, leading to the conclusion that none of the identities have effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspects of correlations for couples of features `(male, female)`<font size=4> a well as </font> `(black, white)`. </font>
+* <font size=4>Considering `R²` values for all identities, explained variance is very weakly for any  identity, leading to the conclusion that none of the identities have a size effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspect of correlations between couples of features `(male, female)`<font size=4> and </font> `(black, white)`. </font>
 <font size=4>These features show a **middle size effect** for explaing target variance.</font>
 <br>
 <center><img src="./report/Analysis_targeted_identities_correlations.png" alt="Drawing" style="width: 200px;"/></center>
@@ -184,10 +184,8 @@ of identities over the toxicity variance</font>
 <font size=4>For jewish identity, having the lowest number of observations among all other identities, the F-statistic and related p-value, respectively 2.8 and 2.e-3 shows that there is a significant difference between means of groups inside jewish identity.</font>
 <br>
 
-<font size=4>Model built based on the list of identities, allows to conclude that each identity has a significant effect over toxicity level.</font>
-<br>
 
-<font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of bservations, 214.</font>
+<font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of observations, 214.</font>
 <br>
 <center><img src="./report/Analysis_stats_jewish_1.png" alt="Drawing" style="width: 200px;"/></center>
 
@@ -202,7 +200,7 @@ of identities over the toxicity variance</font>
 <center><img src="./report/Analysis_stats_jewish_2.png" alt="Drawing" style="width: 200px;"/></center>
 <br>
 
-<font size=4>ANOVA has been conducted over 214 observation and shows : </font>
+<font size=4>ANOVA has been conducted over 214 observations and shows : </font>
 <br>
 
 
@@ -228,7 +226,7 @@ It has been shown that contributors to toxicity has a strong effect over the tox
 <br>
 
 
-<font size=4>Same remark also stands for toxicity contributors. Their co-variancy behaviour along with toxicity is compliant with the intuitive sens, stating that a comment that embbeds insult terms or expressions is welling to render it toxic.</font>
+<font size=4>Same remark also stands for toxicity contributors. Their co-variancy behaviour along with toxicity is compliant with the intuitive sens, stating that a comment that embbeds insulting terms or expressions is welling to render it toxic.</font>
 <br>
 
 <font size=4>Proper algorithms should be able to take into account the presence of toxicity contributors along with identities in comments in order to proceed to classification.
@@ -402,5 +400,68 @@ in vocabulary issued from tokenizer.</font><br>
 
 <center><img src="./report/CNN_Classification_Performances.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_Classification_Performances_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
 
-<h1><font size=15>Bias results</font></h1>
+<h1><font size=20>Bias evaluation</font></h1>
+<br>
 
+<h2><font size=15>Bias evaluation of submission model</font></h2>
+<br>
+<font size=4>Submission model is the one that aims to be submitted to the Kaggle competition. This is the one that has been described and built in this report.</font>
+
+
+<font size=4>A bias metric is defined in order to evaluate AUC over predictions, thus, for each one of the identities. For each idenity, False Positive (FP) rate and True Positive (TP) rate are jointly evaluated 
+by defining area under ROC curve.</font>
+
+
+<font size=4>This metric measures three aspects of the classification <u>for each identity</u> :</font>
+
+<font size=4>
+
+*   <font size=4>`BNSP_AUC` : the ability of the model to distinguish safe comments without any reference (words, expressions) to the identity (such comments belongs to the group named **Background Negative**) from the toxic comments with reference to the identity (such comments belongs to the group named **Subgroup Positive**).</font>
+
+*   <font size=4>`BPSN_AUC` : the ability of the model to distinguish toxic comments without any reference (words, expressions) to the identity (such comments belongs to the group named **Background Positive**) from the safe comments with references to the identity (such comments belongs to the group named **Subgroup Negative**).</font>
+
+*   <font size=4>`SUBGROUP_AUC` : the ability of the model to distinguish toxic comments from non toxic comments, all comments having references to identity.</font>
+<font>
+
+<br>
+<font size=4>While doing so, the classification model performance is scaned for each identity. Table below shows these three values, identity per identity.</font>
+
+<center><img src="./report/bias_metrics.png" alt="Drawing" style="width: 200px;"/></center>
+<br>
+<font size=4>Considering measures of `SUBGROUP_AUC`, the model confuses to distinguish toxic comments from safe one for those comments with `homosexual_gay_or_lesbian` identity. For this identity, probability that model proceeds to a proper distinction between toxic and non toxic comments in less then `70%`. </font>
+<br>
+
+<font size=4>This probability of distinction is nearly the same value, `70%`, for toxic comments without any reference to homosexual, gay or lebian and safe comments that embedds these references.</font>
+
+<font size=4>The final score is computed thanks to the overall AUC that is `0.86` and the three aspects of AUC computed separately for each identity,  with the formula :</font>
+<br>
+<center><img src="./report/score_formula.png" alt="Drawing" style="width: 600px;"/></center>
+
+<font size=4>Where :</font>
+
+*   <font size=4>p is the power, fixed to 5</font>
+*   <font size=4>Ng is the number of identities involved in the bias evaluation, fixed to 9</font>
+*   <font size=4>AUCglobal is the AUC value computed in previous section, with value= `0.86`</font>
+*   <font size=4>Other AUC values are the one extracted from bias table of identities.</font>
+*   <font size=4>0.25 and 0.75 are weights factors that favor ability of the model to distinguish the toxicity of texts separately for each identity over global separability ability.</font>
+<br>
+
+<font size=4>**For the model to be submitted to Kaggle, this formula comes with value `0.79`** This may be interpreted as a bias value of `20%`</font>
+
+
+<h2><font size=15>Bias evaluation of benchmark model</font></h2>
+
+<br>
+
+<font size=4>Benchmark model is he one provided on Kaggle web site, in order to expose implementation of bias algorithm.</font>
+<br>
+
+<font size=4>This is a CNN model traind with closed to 2 millions comments, say, the whole dataset.</font>
+
+
+<h1><font size=10>Conclusions</font></h1>
+
+<font size=4>Data preparation process should include emoticons.</font>
+<br>
+
+<font size=4>Features may be increased with POS tags, NER, organizations tags, all such tags provided with Spacy model of language.</font>
