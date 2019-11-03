@@ -1,4 +1,4 @@
-# <center><h1>TOXIC CONVERSATIONS CLASSIFICATION</h1></center>
+# <center><h1>BIAS EVALUATION FOR MODELS OF TOXIC CONVERSATIONS CLASSIFICATION</h1></center>
 
 <hr>
 
@@ -38,18 +38,6 @@ Selected model is trained and results in term of binary classifications are expo
 <br>
 
 
-<br>
-<h2><font size=10>Project artefacts</font></h2>
-<hr>
-
-<br>
-
-* <font size=4>Project artefacts are located under <a href="URL">http://bit.ly/FBangui_Datasciences_KaggleJigsaw</font></a>
-<br>
-
-* <font size=4>These slides present the overall approach of the study : <a href="URL">
-        https://github.com/dataforcast/OC_Datascientist/blob/master/P8/report/Slides_P9_V1.pdf</font></a>
-<br>
 
 <br>
 
@@ -67,7 +55,8 @@ Selected model is trained and results in term of binary classifications are expo
 Features description
 </font></h2>
 <center><img src="./report/Analysis_features.png" alt="Drawing" style="width: 200px;"/></center>
-
+<center>* Dataset features identification*</center>
+<br>
 
 <font size=4>
 The dataset is composed of 45 columns described as following:
@@ -88,6 +77,7 @@ The dataset is composed of 45 columns described as following:
 <h2><font size=5>Target distribution</font></h2>
 
 <center><img src="./report/Analysis_target.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Toxiciy distribution over the dataset*</center>
 <br>
 
 <font size=4>
@@ -103,7 +93,9 @@ Note also that continuous values of toxicity are difficult to interpret and perc
  
 <h2><font size=5>Toxicity contributors analysis</font></h2>
 <center><img src="./report/ToxicityContributors.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Multi-variate analysis for toxicity contributors (1)*</center>
 <br>
+
 
 <font size=4>
 The group of features, named **Toxicity distribution** are analysed against target values in order to highlight associations between dependant variables and features.</font>
@@ -115,6 +107,7 @@ The group of features, named **Toxicity distribution** are analysed against targ
 <br>
 
 <center><img src="./report/ToxicityContributors_2.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Multi-variate analysis for toxicity contributors (2)*</center>
 <br>
 
 <font size=4>On the display above, the multivariate analysis between features **insult**, **threat**, ** sexual_explicit** and **target**, over the extruded area, shows a more accentuated and dense distribution of points below the diagonal border that *linearly increases* with target values. </font>
@@ -141,6 +134,8 @@ of identities over the toxicity variance</font>
 <br>
 
 <center><img src="./report/Analysis_group_range_values.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Labeling scheme for identities leading to identity levels.*</center>
+<br>
 
 <br>
 
@@ -148,9 +143,10 @@ of identities over the toxicity variance</font>
 <br>
 
 <center><img src="./report/Analysis_stats_female_1.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Variability of toxicity means along with level of female identity.*</center>
 <br>
 
-<font size=4>Means values are the means of toxicity computed for each group. </font>
+<font size=4>Means values are the means of toxicity computed for each group inside comments marked with `female` identity. </font>
 <br>
 
 
@@ -164,6 +160,8 @@ of identities over the toxicity variance</font>
 <font size=4>Result are produced on the figure below: </font>
 <br>
 <center><img src="./report/Analysis_stats_1.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Analysis of variance with Levene hypothesis tests.*</center>
+<br>
 
 <font size=4>Levene test seems to be not significant for all identities except jewish group.  Nevertheless, for making F-stat robust considering **normality and homodestaticity hypothesis**, all groups inside each one of the identities have been sampled with the name number of observations. Then, for each identity, considering F-stat magnetude (that measures a ratio of the variability of the mean inside groups and the variability of the mean between groups) and associated p-value << 5.e-2 (that indicates how significant is the result of F-stat), test over differences of means between groups are **regarded as significant**.</font>
 <br>
@@ -176,10 +174,15 @@ of identities over the toxicity variance</font>
 <font size=4>These features show a **middle size effect** for explaing target variance.</font>
 <br>
 <center><img src="./report/Analysis_targeted_identities_correlations.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Correlation matrix of identities levels*</center>
+<br>
 
 <font size=4>In addition, diagram belows exposes the distribution of a sample of 5000 points for identities that are taken into account for bias evaluation along with toxicity. There is no intuitive evidence of informational shape as pointed for toxicity contributors features on previous section. </font>
 <br>
 <center><img src="./report/Analysis_Multivariate_targeted_identities.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Multivariate analyis of identities levels against toxicity magnetude*</center>
+<br>
+
 
 <font size=4>For jewish identity, having the lowest number of observations among all other identities, the F-statistic and related p-value, respectively 2.8 and 2.e-3 shows that there is a significant difference between means of groups inside jewish identity.</font>
 <br>
@@ -188,7 +191,7 @@ of identities over the toxicity variance</font>
 <font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of observations, 214.</font>
 <br>
 <center><img src="./report/Analysis_stats_jewish_1.png" alt="Drawing" style="width: 200px;"/></center>
-
+<center>* Means of toxicity along with identities groups formed with identities levels*</center>
 <br>
 
 
@@ -198,6 +201,7 @@ of identities over the toxicity variance</font>
 <font size=4> Table below shows the result of ANOVA over jewish identity.</font>
 <br>
 <center><img src="./report/Analysis_stats_jewish_2.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Analysis of variance of means of toxicity along with identities groups formed with identities levels*</center>
 <br>
 
 <font size=4>ANOVA has been conducted over 214 observations and shows : </font>
@@ -236,22 +240,31 @@ It has been shown that contributors to toxicity has a strong effect over the tox
 <font size=4>Also, post-hoc tests shows no evidence of an existance of treshold effect identifying differences between means of different groups inside an identity.</font>
 
 <br>
-<h1><font size=15>Data preparation</font></h1>
+<h1><font size=15>Data preparation & digitalization process</font></h1>
 <font size=4>This process allows to transforms a corpus of comments into a digitalized representation, allowing to feed an algorithm. 
 The global process is described below :</font>
 
 <center><img src="./report/DataPreparation_process.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Software engineering involved into data-preparation and digitalization process *</center>
 <br>
 
 *   <font size=4>
     *   Spacy package is used for NLP processing. Using it, sequences of words are preserved using.<font>
     *   Due to toxicity distribution study in previous sections, balancing dataset is required in order to ensure toxic and non toxic comments to be processed "equaly". Otherwise, contributions to cost function will be mainly due to non toxic comments that will lead to a biased prediction model. The picture above do represents a model obtained with Gradient boosting algorithm without dataset balancing. All non toxic comments are very well classified while predictions for toxic comments are not better then  random prediction leading to weak performances as shown over the RAUC curve.
 <center><img src="./report/Xgboost_unbalancedDataset.png" alt="Drawing" style="width: 200px;"/><img src="./report/Xgboost_unbalancedDataset_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Gradient boosting algorithm binary classification performances with unbalanced classes *</center>
+<br>
 
     *   As the result of the digitalization process, a tensor with 3 dimensions is produced, for train and validation dataset. It is represented as the figure below : 
 <center><img src="./report/DataPreparation_process_digitalization_tensor.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* 3D tensor representation of digitalized dataset *</center>
+<br>
+
     *   Texts truncation : all tokenized texts should have the same number of tokens. This allows to feed NN algorithm with **same embedding layer size**. This operation takes place after the filtering process, for keeping the model with usefull informations. The max length size for the number of tokens has been fixed to 100. This value comes with the text word length distribution described on diagram below :
 <center><img src="./report/DataAnalysis_TextLenghtDistribution.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Text length distribution over the dataset *</center>
+<br>
+
      Trunc of texts after digitalization allows to drive this process based on an objective criteria, such as magnetude of the vectors. Vectors with the smallest magnetude will be pushed out of digitalization representation. While doing so, relevant information that will contribute to decrease of loss function will be kept.
     *   Texts padding : digitalized texts with number of tokens less then max length will be padded with zero vector.
 
@@ -286,13 +299,19 @@ in vocabulary issued from tokenizer.</font><br>
 <br>
 <font size=4>Figure below shows 1000 digitalized comments with process described in previous section. t-SNE operator is applied over 3 dimensions. There is no evidence that an hyperplan exists that is able separate groups of points. </font>
 <center><img src="./report/DataAnalysis_tsne.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* 3D t-SNE reduction over dataset with PCA operator *</center>
+<br>
 
 <font size=4>On figure below, a kernel PCA operator has been applied with kernel of order 5. The kernel trick allows to process a non linear model as a linear model in an Hilbert space of larger size then the original space.</font>
+<br>
 
-<center><img src="./report/KernelPCA.png" alt="Drawing" style="width: 200px;"/><img src="./report/tSNE_KernelPCA.png" alt="Drawing" style="width: 200px;"/></center>
+<center><img src="./report/KernelPCA.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Kernel PCA applied over dataset *</center>
+<br>
 
-<font size=4>The 3D reduction of model issued from kernel trick operator shows group of separated structures. The complexity of such NLP model forbids the use of linear based models.</font>
-
+<center><img src="./report/tSNE_KernelPCA.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* 3D t-SNE reduction over dataset with order 5 Kernel PCA operator *</center>
+<br>
 
 <h1><font size=15 color='blus'>CNN classifier</font></h1>
 <br>
@@ -310,20 +329,27 @@ in vocabulary issued from tokenizer.</font><br>
 <h3><font size=5>CNN hyper-parameters selection for convolutional layers</font></h3>
 <br>
 <center><img src="./report/CNN_Structure_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Evaluation of hyper-parameters for convolutional layers *</center>
+<br>
 
 <font size=4>These parameters are related to CNN structure : </font>
 
 *   <font size=4>The size of the convolution filters. When processing text, this parameter amounts to setting n-grams for the neighborhood of words. Such a structure in word processing is related to the semantics of words, indicating that words of the same neighborhood have the same meanings.</font>
 <center><img src="./report/CNN_FilterSize.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Illustration of filter size effect over the input layer *</center>
+<br>
 
 *   <font size=4>The number of convolutional filters, leading to features maps. This will give the model the potential for identitying all kinds of textual structures in the corpus of comments. A single feature map identifies the same structures that may be repeated in a comment.</font><br>
 *   <font size=4>The number of convolutional layers.</font><br>
 *   <font size=4>The filter stride size. This parameter fixes the window stride for N-GRAM structures detection.</font><br>
 <center><img src="./report/CNN_StrideSize.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Stride size effect over the input layer *</center>
+<br>
 
 <h3><font size=5>CNN hyper-parameters selection for dense layers</font></h3>
 
 <center><img src="./report/CNN_DenseLayer_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Evaluation of the number of neurons into dense layer *</center>
 
 <font size=4>These parameters are related to dense layers structure and they are: </font>
 
@@ -342,6 +368,7 @@ in vocabulary issued from tokenizer.</font><br>
 <br>
 <font size=4></font><br>
 <center><img src="./report/CNN_Algorithm_HyperParameters.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Hyper-parameters evaluation for model optimization *</center>
 
 *   <font size=4>Dropout rate. This parameter controls the model complexity and hence, its capacity to generalization.</font><br>
 
@@ -375,6 +402,7 @@ in vocabulary issued from tokenizer.</font><br>
 <font size=4>DataGenerator is created using DataPreparator object. Such objects contains all operations for data preparation and digitalization process along with configuration parameters used inside these process. This architecture allows an **automation digitalization process** to take place.</font>
 <br>
 <center><img src="./report/Data_Generator_Process.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Software architecture for the learning process *</center>
 
 <font size=4>Depending on object configuration, data sources may be train dataset or validation dataset. A callback function, issued from object of type `keras.callbacks.ModelCheckpoint` allows to save the best model issued from train operation.</font>
 
@@ -384,7 +412,8 @@ in vocabulary issued from tokenizer.</font><br>
 <font size = 4>Model tends to overfit, despites dropout rate of `0.3`</font>
 
 <center><img src="./report/CNN_History_Loss.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_History_Accuracy.png" alt="Drawing" style="width: 200px;"/></center>
-
+<center>* Accuracy and loss functions performances for submission model *</center>
+<br>
 <h2><font size=10>Classification performances</font></h2>
 <font size = 4>Results below have been obtained with training near to <u>`100K`</u> comments and validated over closed to <u>`10K`</u> comments.</font>
 <font size = 4>Confusion matrix below shows that model is able to properly classify : 
@@ -399,6 +428,7 @@ in vocabulary issued from tokenizer.</font><br>
 <font size = 4>Area Under RO Curve is `AUC=0.86` </font>
 
 <center><img src="./report/CNN_Classification_Performances.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_Classification_Performances_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Confusion matrix and ROC curve for the submission model *</center>
 
 <h1><font size=20>Bias evaluation</font></h1>
 <br>
@@ -427,6 +457,8 @@ by defining area under ROC curve.</font>
 <font size=4>While doing so, the classification model performance is scaned for each identity. Table below shows these three values, identity per identity.</font>
 
 <center><img src="./report/bias_metrics.png" alt="Drawing" style="width: 200px;"/></center>
+<center>* Identities AUC for the submission model *</center>
+
 <br>
 <font size=4>Considering measures of `SUBGROUP_AUC`, the model confuses to distinguish toxic comments from safe one for those comments with `homosexual_gay_or_lesbian` identity. For this identity, probability that model proceeds to a proper distinction between toxic and non toxic comments in less then `70%`. </font>
 <br>
@@ -460,21 +492,24 @@ by defining area under ROC curve.</font>
 <br>
 
 <center><img src="./report/CNN_History_Loss_benchmark.png" alt="Drawing" style="width: 600px;"/><img src="./report/CNN_History_Accuracy_benchmark.png" alt="Drawing" style="width: 600px;"/></center>
-
-
+<center>* Accuracy and loss functions performances for benchmark model *</center>
+<br>
 
 <font size=4>Bias table below shows AUC values for identities : </font>
 <br>
 
 <center><img src="./report/df_bias_metrics_benchmark.png" alt="Drawing" style="width: 600px;"/></center>
+<center>* Identities AUC for the benchmark model *</center>
 <br>
 
 <font size=4>Final score for benchmark model, measuring the bias model is `0.89`</font>
 <br>
 
-<font size=4>Confusion matrix below shows that, despite better performances for bias metric, benchmark model confuses more, globaly, to distinguish toxics comments from safe one, with `AUC = 0.75`</font>
+<font size=4>Confusion matrix below shows that, despite better performances for bias metric, benchmark model confuses more, globaly, to distinguish toxics comments from safe one, with `AUC = 0.75` against 0.86 for our submission model.</font>
 
 <center><img src="./report/CNN_Benchmark_Classification_Performances.png" alt="Drawing" style="width: 600px;"/><img src="./report/CNN_Benchmark_ROC_Performances.png" alt="Drawing" style="width: 600px;"/></center>
+<center>* Confusion matrix and ROC curve for the benchmark model *</center>
+<br>
 
 <h1><font size=10>Conclusions</font></h1>
 
