@@ -456,8 +456,25 @@ by defining area under ROC curve.</font>
 <font size=4>Benchmark model is he one provided on Kaggle web site, in order to expose implementation of bias algorithm.</font>
 <br>
 
-<font size=4>This is a CNN model traind with closed to 2 millions comments, say, the whole dataset.</font>
+<font size=4>This is a CNN model trained with closed to 2 millions comments, say, the whole dataset. It holds close to 160K parameters.</font>
+<br>
 
+<center><img src="./report/CNN_History_Loss_benchmark.png" alt="Drawing" style="width: 600px;"/><img src="./report/CNN_History_Accuracy_benchmark.png" alt="Drawing" style="width: 600px;"/></center>
+
+
+
+<font size=4>Bias table below shows AUC values for identities : </font>
+<br>
+
+<center><img src="./report/df_bias_metrics_benchmark.png" alt="Drawing" style="width: 600px;"/></center>
+<br>
+
+<font size=4>Final score for benchmark model, measuring the bias model is `0.89`</font>
+<br>
+
+<font size=4>Confusion matrix below shows that, despite better performances for bias metric, benchmark model confuses more, globaly, to distinguish toxics comments from safe one, with `AUC = 0.75`</font>
+
+<center><img src="./report/CNN_Benchmark_Classification_Performances.png" alt="Drawing" style="width: 600px;"/><img src="./report/CNN_Benchmark_ROC_Performances.png" alt="Drawing" style="width: 600px;"/></center>
 
 <h1><font size=10>Conclusions</font></h1>
 

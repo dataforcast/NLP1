@@ -946,7 +946,7 @@ def display_class_performance(class_estimator, Xeval, y_eval, \
     # prédire sur le jeu de test
     #--------------------------------------------------------------
     if y_pred is None :
-        y_pred_label = class_estimator.predict_classes(Xeval, verbose=1)
+        y_pred_label = class_estimator.predict(Xeval, verbose=1)
     else :
         y_pred_label = y_pred.copy()
         

@@ -68,7 +68,13 @@ BATCH_SIZE = 128
 MAX_NUM_WORDS = 10000
 DROPOUT_RATE = 0.3
 
-
+'''Parameters used in order to train classifiers models. Models may be benchmark 
+model or submission model.
+Submission model is the one to be submitted in order to compete to Kaggle competition.
+Benchmark model is the one provided by Kaggle with implementation of bias algorithm 
+evaluation.
+Both models use the ame configuration file format.
+'''
 dict_param_benchmark = {
 #-------------------------------------------------------------------------------
 # Root directory for storing artefacts related to benchmark model.
@@ -104,18 +110,12 @@ dict_param_benchmark = {
 'n_sample_train': None,\
 
 #-------------------------------------------------------------------------------
-# Reload tokenizer, embedding matrix, train and test dataset.
-# It is used to build a new model using same dataset and same transformer.
-#-------------------------------------------------------------------------------
-'is_dataset_reloaded' : True,\
-
-#-------------------------------------------------------------------------------
 # Model type : benchmark or submission
 # Benchmark model is the one provided from Kaggle.
 # Submission model is the one built by competitor.
 # Expected values : submission, benchmark.
 #-------------------------------------------------------------------------------
-'model_type' : 'submission',\
+'model_type' : 'benchmark',\
 
 #-------------------------------------------------------------------------------
 # Reload a trained model when flag is fixed to True.
@@ -127,6 +127,20 @@ dict_param_benchmark = {
 # Use Keras embedding layer in order to build CNN network
 #-------------------------------------------------------------------------------
 'is_embedding_layer' : True   ,\
+
+#-------------------------------------------------------------------------------
+# Reload train and test dataset.
+# It is used to build a new model using same dataset and same transformer.
+#-------------------------------------------------------------------------------
+'is_dataset_reloaded' : True,\
+
+#-------------------------------------------------------------------------------
+# In case configuration is undefined or this flag is False, 
+# then embeddings are loaded, embeddings matrix is built and tokenozer 
+# is built.
+# Otherwise, embeddings matrix is reloaded.
+#-------------------------------------------------------------------------------
+'is_embedding_reloaded' : True,\
 
 #-------------------------------------------------------------------------------
 # Threshold that fixe toxicity when training the model:
@@ -154,6 +168,9 @@ dict_param_benchmark = {
 #
 #-------------------------------------------------------------------------------
 def _get_name_dimension(dict_param) :
+    '''Returns an expression of embeddings dimension used to build a 
+    file name.
+    '''
     return str(dict_param['embeddings_dimension'])+'D_'
 #-------------------------------------------------------------------------------
 
@@ -161,10 +178,17 @@ def _get_name_dimension(dict_param) :
 #
 #-------------------------------------------------------------------------------
 def _get_dict_param_benchmark(dict_param_benchmark) :
-    '''Returns dictionary of parameters configuration.
+    '''Returns dictionary of parameters used for configuration in order to 
+    build Keras models.
+    
     When value given as function argument is None, then dictionary of parameters 
-    defined in this file is returned.
-    Otherwise, value given as function argument is returned.
+    defined in this file is returned. Otherwise, value given as function argument 
+    is returned.
+    
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary.
+    Output :
+        *   Parameters structured as a dictionary.
     '''
     dict_param = dict()
     #---------------------------------------------------------------------------
@@ -182,6 +206,15 @@ def _get_dict_param_benchmark(dict_param_benchmark) :
 #
 #-------------------------------------------------------------------------------
 def _get_n_sample_train_name(dict_param) :
+    '''Returns an expression of number of observations in train dataset. 
+    It is used in order to build a file name.
+    
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary.
+    Output :
+        *   Parameters structured as a dictionary.
+    '''
+
     if dict_param['n_sample_train'] is None :
         name = 'FULL'
     else:
@@ -193,6 +226,16 @@ def _get_n_sample_train_name(dict_param) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_history(dict_param_benchmark=None) :
+    '''Build a name from parameters that is used in order to reference 
+    the file containing history of a Keras training process.
+
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store Keras history training.
+    
+    '''
 
     dict_param = _get_dict_param_benchmark(dict_param_benchmark)
     
@@ -210,6 +253,15 @@ def build_filename_history(dict_param_benchmark=None) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_embedding_matrix(dict_param_benchmark=None) :
+    '''Build a name from parameters that is used in order to reference 
+    the file containing embeddings matrix.
+
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store embeddings matrix.
+    '''
 
     dict_param = _get_dict_param_benchmark(dict_param_benchmark)
     
@@ -225,6 +277,15 @@ def build_filename_embedding_matrix(dict_param_benchmark=None) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_tokenizer(dict_param_benchmark=None) :
+    '''Build a name from parameters that is used in order to reference 
+    the file containing a tokenizer.
+
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store tokenizer.
+    '''
 
     dict_param = _get_dict_param_benchmark(dict_param_benchmark)
 
@@ -245,6 +306,15 @@ def build_filename_tokenizer(dict_param_benchmark=None) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_param(dict_param_benchmark=None) :
+    '''Build a name from parameters that is used in order to reference 
+    the file containing this parameters.
+
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store configuration parameters.
+    '''
     #---------------------------------------------------------------------------
     # Fixe dictionary of parameters, considering dict_param_benchmark given as 
     # parameter.
@@ -264,6 +334,20 @@ def build_filename_param(dict_param_benchmark=None) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_benchmark(is_train=False, dict_param_benchmark=None) :
+    '''Build a name from parameters that is used in order to reference 
+    the file containing dataset used either train train a model or 
+    used for validation.
+
+    Inputs :
+        *   is_train : when False, the name will be composed with the term 
+        'valid', otherwise, the name will be compsoed with the term 'train'.
+        
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store a train or a validation dataset.
+    '''
+
     dict_param = dict()
     #---------------------------------------------------------------------------
     # Fixe dictionary of parameters, considering dict_param_benchmark given as 
@@ -297,6 +381,14 @@ def build_filename_benchmark(is_train=False, dict_param_benchmark=None) :
 #
 #-------------------------------------------------------------------------------
 def _build_filename_modelcore(dict_param) :
+    '''Build a part of the name from parameters that is used in order to reference 
+    the file containing a prediction model.
+
+    Inputs :
+        *   dict_param : parameters structured as a dictionary. 
+    Output :
+        *   The part of the file name for a prediction model.
+    '''
     n_sample = dict_param['n_sample_train']
     
     filename = dict_param['root_filename_model']
@@ -314,6 +406,16 @@ def _build_filename_modelcore(dict_param) :
 #
 #-------------------------------------------------------------------------------
 def build_filename_model(dict_param_benchmark=None) :
+    '''Build a name from parameters, name that is used in order to reference 
+    the file containing a prediction model.
+
+    Inputs :
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+    Output :
+        *   File name used to store a prediction model.
+    '''
+
     dict_param = _get_dict_param_benchmark(dict_param_benchmark)
     filename   = dict_param['root_directory'] 
     filename += _build_filename_modelcore(dict_param)+'_'
@@ -329,6 +431,28 @@ def build_filename_model(dict_param_benchmark=None) :
 #-------------------------------------------------------------------------------
     
 def build_embeddings_matrix(tokenizer, dict_param_benchmark_=None):
+    '''Build an embedding matrix from a tokenizer and configuration parameters.
+    
+    Embedding matrix has the following structure : 
+    --> Rows are words or tokens issued from a corpus of texts.
+    --> Columns are  vectors coefficients of embeddings.
+    
+    Embeddings matrix is saved over harddisk before its value to be returned.
+    The embeddings matrix file name is buil from dictionary of configuration 
+    parameters.
+    
+    Inputs : 
+        * tokenizer : this is an operator that has been used in corpus 
+        tokenization process. It contains the vocabulary issued from corpus 
+        tokenization. Rows of resulting embedding matrix will be issued from 
+        the tokenizer vocabulary.
+
+        *   dict_param_benchmark : parameters structured as a dictionary. When 
+        this value is None, then dictionary defined in this file is used.
+
+    Output :
+        * embeddings matrix the represents a digitalized corpus.
+    '''
 
     if dict_param_benchmark_ is None :
         embeddings_dimension = EMBEDDINGS_DIMENSION
@@ -338,38 +462,49 @@ def build_embeddings_matrix(tokenizer, dict_param_benchmark_=None):
     #---------------------------------------------------------------------------
     # Load embeddings
     #---------------------------------------------------------------------------
-    print('Loading embeddings...')
-    embeddings_index = {}
-    with open(EMBEDDINGS_PATH) as f:
-        for line in f:
-            values = line.split()
-            word = values[0]
-            coefs = np.asarray(values[1:], dtype='float32')
-            embeddings_index[word] = coefs
+    if dict_param_benchmark_ is None or not dict_param_benchmark_['is_embedding_reloaded'] :
+        #-----------------------------------------------------------------------
+        # In case configuration is undefined or flag to reload embeddings matrix 
+        # is False, then this last is built.
+        #-----------------------------------------------------------------------
+        print('Loading embeddings...')
+        embeddings_index = {}
+        with open(EMBEDDINGS_PATH) as f:
+            for line in f:
+                values = line.split()
+                word = values[0]
+                coefs = np.asarray(values[1:], dtype='float32')
+                embeddings_index[word] = coefs
 
-    #---------------------------------------------------------------------------
-    # Build embeddings
-    #---------------------------------------------------------------------------
-    print('Building embeddings...')
-    embedding_matrix = np.zeros((len(tokenizer.word_index) + 1,
-                                 embeddings_dimension))
-    num_words_in_embedding = 0
-    for word, i in tokenizer.word_index.items():
-        embedding_vector = embeddings_index.get(word)
-        if embedding_vector is not None:
-            num_words_in_embedding += 1
-            embedding_matrix[i] = embedding_vector
-        else :
-            #-------------------------------------------------------------------
-            # words not found in embedding index will be all-zeros.
-            #-------------------------------------------------------------------
-            pass
-
-    #---------------------------------------------------------------------------
-    # Save embeddings
-    #---------------------------------------------------------------------------
-    filename_embedding_matrix = p9_util_benchmark.build_filename_embedding_matrix(dict_param_benchmark=dict_param_benchmark_)
-    p5_util.object_dump(embedding_matrix, filename_embedding_matrix, is_verbose=True)
+        #---------------------------------------------------------------------------
+        # Build embeddings
+        #---------------------------------------------------------------------------
+        print('Building embeddings...')
+        embedding_matrix = np.zeros((len(tokenizer.word_index) + 1,
+                                     embeddings_dimension))
+        num_words_in_embedding = 0
+        for word, i in tokenizer.word_index.items():
+            embedding_vector = embeddings_index.get(word)
+            if embedding_vector is not None:
+                num_words_in_embedding += 1
+                embedding_matrix[i] = embedding_vector
+            else :
+                #-------------------------------------------------------------------
+                # words not found in embedding index will be all-zeros.
+                #-------------------------------------------------------------------
+                pass
+        #-----------------------------------------------------------------------
+        # Save embeddings matrix
+        #-----------------------------------------------------------------------
+        filename_embedding_matrix = p9_util_benchmark.build_filename_embedding_matrix(dict_param_benchmark=dict_param_benchmark_)
+        p5_util.object_dump(embedding_matrix, filename_embedding_matrix, is_verbose=True)
+    else :
+        #-----------------------------------------------------------------------
+        # Load embeddings matrix
+        #-----------------------------------------------------------------------
+        print('Loading embeddings matrix...')
+        filename_embedding_matrix = p9_util_benchmark.build_filename_embedding_matrix(dict_param_benchmark=dict_param_benchmark_)
+        embedding_matrix = p5_util.object_load(filename_embedding_matrix, is_verbose=True)
 
 
     return embedding_matrix
@@ -378,9 +513,20 @@ def build_embeddings_matrix(tokenizer, dict_param_benchmark_=None):
 #-------------------------------------------------------------------------------
 #
 #-------------------------------------------------------------------------------
-# Create model layers.
 def build_model(dict_param_benchmark, dict_param_keras_cnn):
-    '''
+    '''Build either submission model or benchmark model based on configuration 
+    given as function parameter.
+    
+    Input : 
+        *   dict_param_benchmark : parameters for both, submission and benchmark models.
+        *   dict_param_keras_cnn : CNN hyper-parameters for building either 
+        benchmak or submission model.
+
+    Output : 
+        *   the compiles CNN model 
+        *   list of callbacks activated by Keras package in order to process 
+        additional operations.          
+        
     '''
     
     dict_param_keras = dict_param_keras_cnn['dict_param_keras']
@@ -498,6 +644,30 @@ def build_model(dict_param_benchmark, dict_param_keras_cnn):
 #-------------------------------------------------------------------------------
 def train_model(train_generator, valid_generator, model,dict_param_keras_cnn, \
 list_callback=None):
+    '''Train a Keras model.
+    When list_callback is not none, model is saved if model performances have 
+    been improved from previous EPOCH.
+    Model filename is included into callbacks.
+    
+    Inputs :
+        *   train_generator : object used by Keras framework in order to pump train 
+        dataset partitions from files on hardisk.
+        
+        *   valid_generator : object used by Keras framework in order to pump 
+        validations daset partitions from files on hardisk.
+        
+        *   model : Kerass model to be trained.
+        
+        *   dict_param_keras_cnn : dictionary containing configuration parameters 
+        used to train model : number of EPOCHS and verbocity.
+        
+        *   list_callback : list of callback objects containing functions to 
+        be activated by Keras framework in the training process.
+        
+    Outputs : 
+        *   the trained Keras model 
+        *   history issued from the training process.
+    '''
     # Train model.
     val_acc_max = 0.0
     print('\nTraining model...')
@@ -648,14 +818,19 @@ def pad_text(texts, tokenizer, dict_param_keras_cnn=None):
 #-------------------------------------------------------------------------------
 #
 #-------------------------------------------------------------------------------
-# Convert taget and identity columns to booleans
+# 
 def convert_to_bool(df, col_name, threshold):
+    '''Convert values from a given column into booleans, considering a threshold value.
+    Values greater or equal threshold will be assigned to True, 
+    while other values will be assigned to False.
+    '''
     df[col_name] = np.where(df[col_name] >= threshold, True, False)
 #-------------------------------------------------------------------------------    
+
 #-------------------------------------------------------------------------------
 #
 #-------------------------------------------------------------------------------
-def convert_dataframe_to_bool(df, dict_param_benchmark_=None):
+def convert_dataframe_to_bool(df, dict_param_benchmark_=None, pred_column='my_model'):
 
     if dict_param_benchmark_ is None :
         threshold = THRESHOLD
@@ -663,8 +838,11 @@ def convert_dataframe_to_bool(df, dict_param_benchmark_=None):
         threshold = dict_param_benchmark_['threshold']
 
     bool_df = df.copy()
-    for col in ['target'] + p9_util_metrics.IDENTITY_COLUMNS:
-        convert_to_bool(bool_df, col, threshold)
+    for col in ['target'] + [pred_column] + p9_util_metrics.IDENTITY_COLUMNS:
+        if col in bool_df.columns :
+            convert_to_bool(bool_df, col, threshold)
+        else :
+            pass
     return bool_df
 #-------------------------------------------------------------------------------
     

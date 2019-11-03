@@ -64,7 +64,7 @@ def compute_identity_auc(df, identity, label, predict):
     '''
     
     #---------------------------------------------------------------------------
-    # The subset isuued from dataset that contain identity is defined.
+    # The subset issued from dataset that contain identity is defined.
     #---------------------------------------------------------------------------
     subset_identity = df[df[identity]]
 
