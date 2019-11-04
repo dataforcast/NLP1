@@ -491,9 +491,6 @@ class DataGenerator(keras.utils.Sequence) :
             #                   value = 0
             # NB : case of n_classes > 2 has to be taken into account!!!
             if 2 == self.n_classes :
-                threshold = 0
-                direction = 1
-                y=p9_util.multivalue2_binary(y, threshold, direction)
                 return X, keras.utils.to_categorical(y, num_classes=self.n_classes,dtype='int')
             else :
                 print("\n*** ERROR : multiple classification > 2 not yet supported!")
