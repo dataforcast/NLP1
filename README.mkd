@@ -157,7 +157,7 @@ of identities over the toxicity variance</font>
 <font size=4>For any of the groups in the list above, **Levene** test is conducted. This test allows to validate **homodestaticity** hypothesis : variance in each group has equal value. This is the **H0  hypothesis stating over variance equality** between the groups of an identity. If Levene test is significant, considering p-value, then null hypothesis will be accepted and homodestaticity hypothesis will be valid. </font>
 <br>
 
-<font size=4>Result are produced on the figure below: </font>
+<font size=4>Results are produced on the figure below: </font>
 <br>
 <center><img src="./report/Analysis_stats_1.png" alt="Drawing" style="width: 200px;"/></center>
 <center>* Analysis of variance with Levene hypothesis tests.*</center>
@@ -173,7 +173,8 @@ of identities over the toxicity variance</font>
 * <font size=4>Considering `R²` values for all identities, explained variance is very weakly for any  identity, leading to the conclusion that none of the identities have a size effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspect of correlations between couples of features `(male, female)`<font size=4> and </font> `(black, white)`. </font>
 <font size=4>These features show a **middle size effect** for explaing target variance.</font>
 <br>
-<center><img src="./report/Analysis_targeted_identities_correlations.png" alt="Drawing" style="width: 200px;"/></center>
+
+<center><img src="./report/Analysis_identities_correlations.png" alt="Drawing" style="width: 200px;"/></center>
 <center>* Correlation matrix of identities levels*</center>
 <br>
 
