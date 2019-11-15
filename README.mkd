@@ -44,8 +44,27 @@ Selected model is trained and results in term of binary classifications are expo
 <h1><font size=10>Software architecture</font></h1>
 <hr>
 
-<center><img src="./report/SwArchitecture.png" alt="Drawing" style="width: 200px;"/></center>
+<center><img src="./img/SoftwareEngineeringGlobal.gif" alt="Drawing" style="width: 200px;"/></center>
 <br>
+
+<font size=4>This software architecture is drawned with **UML** syntax. It is organized as layers of packages issued from other Data Sciences projects. They are reused here to face effectiveness, productitivy and quality issues.
+</font>
+
+
+<font size=4>
+All packages are implemented with Python 3.6 language. </font>
+<br>
+<font size=4>
+Architecture semantic is interpreted as following : </font>
+
+* <font size=4> The notebook **DataPreparator.ipynb** uses file where dataset is stored in to  read it.
+</font>
+* <font size=4> The notebook **DataPreparator.ipynb** builds a data model, named **DataPreparator_v2.dill**. This an object issued from Python class **DataPreparator_v2.py**
+. It contains all configurations and functions (attributes and methods) used in order to produce a dataset ready for feeding a machine learning algorithm. </font>
+
+* <font size=4> The notebook **CNN_BinaryClassifier.ipynb** uses **DataPreparator_v2** Python object in order to build a Keras CNN model for binary classification. This model is saved on harddisk into a **H5** format.  </font>
+
+* <font size=4> The **CNN model** uses an instance of **DataGenerator.py** class in order to access data in a bulk way. Data is stored in a folder of hardisk. This allows to save memory ressources, using hardisk as a memory ressource extension and also to train model in a K-fold manner.</font>
 
 <br>
 <h1><font size=10>Exploratory analyis</font></h1>
@@ -433,7 +452,9 @@ in vocabulary issued from tokenizer.</font><br>
 
 <h1><font size=20>Bias evaluation</font></h1>
 <br>
+<font size = 4>Graphic belows shows sofyware architecture involves in the bias evaluation process. </font>
 
+<center><img src="./img/SoftwareEngineeringBiasMetrics.gif" alt="Drawing" style="width: 200px;"/></center>
 <h2><font size=15>Bias evaluation of submission model</font></h2>
 <br>
 <font size=4>Submission model is the one that aims to be submitted to the Kaggle competition. This is the one that has been described and built in this report.</font>
