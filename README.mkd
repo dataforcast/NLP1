@@ -421,7 +421,7 @@ in vocabulary issued from tokenizer.</font><br>
 
 <font size=4>DataGenerator is created using DataPreparator object. Such objects contains all operations for data preparation and digitalization process along with configuration parameters used inside these process. This architecture allows an **automation digitalization process** to take place.</font>
 <br>
-<center><img src="./report/Data_Generator_Process.png" alt="Drawing" style="width: 200px;"/></center>
+<center><img src="./img/DataGenerator_Process.gif" alt="Drawing" style="width: 200px;"/></center>
 <center>* Software architecture for the learning process *</center>
 
 <font size=4>Depending on object configuration, data sources may be train dataset or validation dataset. A callback function, issued from object of type `keras.callbacks.ModelCheckpoint` allows to save the best model issued from train operation.</font>
