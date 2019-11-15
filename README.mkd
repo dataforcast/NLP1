@@ -452,7 +452,7 @@ in vocabulary issued from tokenizer.</font><br>
 
 <h1><font size=20>Bias evaluation</font></h1>
 <br>
-<font size = 4>Graphic belows shows sofyware architecture involves in the bias evaluation process. </font>
+<font size = 4>Graphic belows shows software architecture involves in the bias evaluation process. </font>
 
 <center><img src="./img/SoftwareEngineeringBiasMetrics.gif" alt="Drawing" style="width: 200px;"/></center>
 <h2><font size=15>Bias evaluation of submission model</font></h2>
