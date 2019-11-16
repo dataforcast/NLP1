@@ -64,7 +64,7 @@ Architecture semantic is interpreted as following : </font>
 
 * <font size=4> The notebook **CNN_BinaryClassifier.ipynb** uses **DataPreparator_v2** Python object in order to build a Keras CNN model for binary classification. This model is saved on harddisk into a **H5** format.  </font>
 
-* <font size=4> The **CNN model** uses an instance of **DataGenerator.py** class in order to access data in a bulk way. Data is stored in a folder of hardisk. This allows to save memory ressources, using hardisk as a memory ressource extension and also to train model in a K-fold manner.</font>
+* <font size=4> The **CNN model** uses an instance of **DataGenerator.py** class in order to access data in a bulk way. Data is stored in a folder of hardisk. This allows to save memory ressources, using hardisk as a memory ressource extension and also to train model with cross-validations over K-folds datasets.</font>
 
 <br>
 <h1><font size=10>Exploratory analyis</font></h1>
