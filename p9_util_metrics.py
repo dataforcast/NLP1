@@ -39,7 +39,7 @@ def compute_auc(y_true, y_pred, is_debug=False):
 #-------------------------------------------------------------------------------
 def compute_identity_auc(df, identity, label, predict):
     '''This metric allows to evaluate how the model performs to 
-    distinguish toxic and non toxic comments that mention identity.
+    distinguish toxic and non toxic comments that mention an identity.
     
     A low value in this metric means that the model, for a given identity, 
     confuses non-toxic comments with toxic comments.
@@ -207,8 +207,8 @@ def compute_bias_metrics_for_model(dataset,
     Input : 
         * dataset : input data.
         * list_subgroup : list of sub-groups (identities) 
-        * predict_column_name : column name containing model predictions.
-        * true_column_name : column name from datasset containing True values 
+        * predict_column_name : column name containing predictions.
+        * true_column_name : column name from validation dataset containing true targets values 
         * include_asegs : NOT USED
     Output :
         * A dataframe containing metrics into AUC columns, sorted on 'subgroup_auc' column

@@ -440,12 +440,12 @@ in vocabulary issued from tokenizer.</font><br>
 </font>
 
 *   <font size=4>
-    * 85% of non toxic comments
+    * 86% of non toxic comments
     * 87% of toxic comments       
 </font>
 
 <br>
-<font size = 4>Area Under RO Curve is `AUC=0.86` </font>
+<font size = 4>Area Under RO Curve is `AUC=0.93` </font>
 
 <center><img src="./report/CNN_Classification_Performances.png" alt="Drawing" style="width: 200px;"/><img src="./report/CNN_Classification_Performances_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
 <center>* Confusion matrix and ROC curve for the submission model *</center>
@@ -482,10 +482,10 @@ by defining area under ROC curve.</font>
 <center>* Identities AUC for the submission model *</center>
 
 <br>
-<font size=4>Considering measures of `SUBGROUP_AUC`, the model confuses to distinguish toxic comments from safe one for those comments with `homosexual_gay_or_lesbian` identity. For this identity, probability that model proceeds to a proper distinction between toxic and non toxic comments in less then `70%`. </font>
+<font size=4>Considering measures of `SUBGROUP_AUC`, the model confuses to distinguish toxic comments from safe one for those comments with `homosexual_gay_or_lesbian` identity. For this identity, probability that model proceeds to a proper distinction between toxic and non toxic comments in more then `75%`. </font>
 <br>
 
-<font size=4>This probability of distinction is nearly the same value, `70%`, for toxic comments without any reference to homosexual, gay or lebian and safe comments that embedds these references.</font>
+<font size=4>This probability of distinction is fare less then the ability of the model to distinguish from toxic comments without any reference to homosexual, gay or lebian and safe comments that contains sucg references : `SUBGROUP_AUC`= 0.76 < `BPSN_AUC= 0.82` .</font>
 
 <font size=4>The final score is computed thanks to the overall AUC that is `0.86` and the three aspects of AUC computed separately for each identity,  with the formula :</font>
 <br>
@@ -501,6 +501,7 @@ by defining area under ROC curve.</font>
 <br>
 
 <font size=4>**For the model to be submitted to Kaggle, this formula comes with value `0.79`** This may be interpreted as a bias value of `20%`</font>
+
 
 
 <h2><font size=15>Bias evaluation of benchmark model</font></h2>
@@ -524,6 +525,7 @@ by defining area under ROC curve.</font>
 <center>* Identities AUC for the benchmark model *</center>
 <br>
 
+
 <font size=4>Final score for benchmark model, measuring the bias model is `0.89`</font>
 <br>
 
@@ -534,6 +536,13 @@ by defining area under ROC curve.</font>
 <br>
 
 <h1><font size=10>Conclusions</font></h1>
+
+<font size=4>Table below show the diffenrences of bias values between benchmark model and submission model along with identities groups with thier size used for evaluation.</font>
+
+<font size=4>
+Bold font shows the model with the greatest performance.</font>
+
+<center><img src="./report/DiffBiasBenchmarkSubmission.gif" alt="Drawing" style="width: 600px;"/></center>
 
 <font size=4>Data preparation process should include emoticons.</font>
 <br>

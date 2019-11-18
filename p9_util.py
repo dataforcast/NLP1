@@ -1012,6 +1012,7 @@ def display_class_performance(class_estimator, Xeval, y_eval, \
         print("FP rate = {}".format(fpr))
         # calculer l'aire sous la courbe ROC
         auc = metrics.auc(fpr, tpr)
+        auc = metrics.roc_auc_score(y_test_label_row, y_pred_label_row)
         print("AUC = {}".format(auc))
 
         # créer une figure
