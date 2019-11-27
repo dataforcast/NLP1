@@ -499,7 +499,7 @@ by defining area under ROC curve.</font>
 <font size=4>Final score for benchmark model, measuring the bias model is `0.89`</font>
 <br>
 
-<font size=4>Confusion matrix below shows that, despite better performances for bias metric, benchmark model confuses more, globaly, to distinguish toxics comments from safe one, with `AUC = 0.75` against 0.86 for our submission model.</font>
+<font size=4>Confusion matrix below shows that, despite better performances for bias metric, benchmark model confuses more, globaly, to distinguish toxics comments from safe one, with `AUC = 0.75` against 0.89 for our submission model.</font>
 
 <center><img src="./report/CNN_Benchmark_Classification_Performances.png" alt="Drawing" style="width: 600px;"/><img src="./report/CNN_Benchmark_ROC_Performances.png" alt="Drawing" style="width: 600px;"/></center>
 <center>* Confusion matrix and ROC curve for the benchmark model *</center>
