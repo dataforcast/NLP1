@@ -205,40 +205,6 @@ The group of features, named **Toxicity distribution** are analysed against targ
 <br>
 
 
-<font size=4>For jewish identity, having the lowest number of observations among all other identities, the F-statistic and related p-value, respectively 2.8 and 2.e-3 shows that there is a significant difference between means of groups inside jewish identity.</font>
-<br>
-
-
-<font size=4>Table below shows, for jewish identity, means and standard deviation of any of the groups built on labeled indices ranges of values. For the need of test reliability, all groups have been sampled with the same number of observations, 214.</font>
-<br>
-<center><img src="./report/Analysis_stats_jewish_1.png" alt="Drawing" style="width: 200px;"/></center>
-<center>* Means of toxicity along with identities groups formed with identities levels*</center>
-<br>
-
-
-<font size=4>Means show differences in between labelized groups. Are these differences significant? If yes, then it will be allowed to conclude that such groups, based on jewish identity, do explain variancy of toxicity. In that case, it will be stand that a relation between toxiciy level and jewish identity exists.</font>
-<br>
-
-<font size=4> Table below shows the result of ANOVA over jewish identity.</font>
-<br>
-<center><img src="./report/Analysis_stats_jewish_2.png" alt="Drawing" style="width: 200px;"/></center>
-<center>* Analysis of variance of means of toxicity along with identities groups formed with identities levels*</center>
-<br>
-
-<font size=4>ANOVA has been conducted over 214 observations and shows : </font>
-<br>
-
-
-* <font size=4>
-R² value, 1.e-2 is a weak value. Correlation between toxicity and identity is weak. There is no **linear relation** between jewish identity and toxicity. Correlation matrix supports this conclusion.
-
-</font>
-
-* <font size=4>
-From the column `P>|t|` the groups labelized 6, 7, 10 have significant difference with intercept, that is group level 0. **Post-hoc** test will allows to compare groups level 6, 7 and 10 in between each-other.
-</font>
-<br>
-
 <h2><font size=5>Conclusions over features analysis</font></h2>
 <br>
 <font size=4>
@@ -247,7 +213,7 @@ It has been shown that contributors to toxicity have a strong effect over the to
 </font>
 <br>
 
-<font size=4>Absence of identity effects over toxicity also let think that the process involved in toxicity and identity metrics can be safely taken into account. This lead to consider as reliable comments labelization used in a supervized machine learning model.</font>
+<font size=4>Absence of identity effects over toxicity also let us think that the process involved in toxicity and identity metrics can be safely taken into account. This lead to consider as reliable comments labelization used in a supervized machine learning model.</font>
 <br>
 
 
@@ -259,6 +225,9 @@ It has been shown that contributors to toxicity have a strong effect over the to
 <br>
 
 <font size=4>Also, post-hoc tests shows no evidence of an existance of treshold effect identifying differences between means of different groups inside an identity.</font>
+
+<br>
+<font size=4>**For the followings sections, toxicity and identities groups levels are considered as latent values that explain the variancy of target values. M.L. algorithms will only have comments as independant features and toxicity levels as targets**.</font>
 
 <br>
 <h1><font size=15>Data preparation & digitalization process</font></h1>
