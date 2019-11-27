@@ -119,10 +119,10 @@ Note also that continuous values of toxicity are difficult to interpret and perc
 <font size=4>
 The group of features, named **Toxicity distribution** are analysed against target values in order to highlight associations between dependant variables and features.</font>
 
-<font size=4>This multivariate analysis shows that **identity_attack**, **obscene** and **severe_toxicity** in extruded area show a linear border of the shape of distributed points along with target. The border of the shape *increases linearly* with toxicity range of values. The fact that a dense area of points appears under the diagonal border let think that contrubution to toxicity may be due to a combinaison ot this three features.</font>
+<font size=4>This multivariate analysis shows that **identity_attack**, **obscene** and **severe_toxicity** in extruded area show a linear border of the shape of distributed points along with target. The border of the shape *increases linearly* with toxicity range of values. The fact that a dense area of points appears under the diagonal border let think that contribution to toxicity may be due to a combinaison of at least these three features.</font>
 <br>
 
-<font size=4>We note also that in non extruded area, multivariate analysis between features **identity_attack** and **obscene** expose the same kind of linearly border shape that *linearly decreases* </font>
+<font size=4>We note also that in non extruded area, multivariate analysis between features **identity_attack** and **obscene** expose the same kind of linearly border shape that *linearly decreases*. </font>
 <br>
 
 <center><img src="./report/ToxicityContributors_2.png" alt="Drawing" style="width: 200px;"/></center>
@@ -134,17 +134,18 @@ The group of features, named **Toxicity distribution** are analysed against targ
 
 <h2><font size=5>ANOVA over identities </font></h2>
 
-<font size=4>QUESTION: is it possible to infer a relation between toxicity and identities ?</font>
+<font size=4>QUESTION: is it possible to infer a relation between toxicity (the target) and identities ?</font>
 <br>
 
-<font size=4>Identities are used in order to evaluate bias. Idea is to evaluate the contribution 
-of identities over the toxicity variance</font>
+<font size=4>Identities are used in order to evaluate bias. The idea behind, is to evaluate the existance of relations  betweens various identities with toxicity level.</font>
 <br>
 
-<font size=4>For doing so, ANOVA is proceeded over each one of the groups formed with identities.</font>
+<font size=4>The bias computation process consists in defining thresholds for both, `identity` feature and `target` from which, 2 classes are defined. The bias evaluation leads to to build a binary classification algorithm. The point of interest here is to try to make sense for a fixed threshold value.  </font>
+
+<font size=4>For doing so, ANOVA is applied over each one of the groups formed with identities.</font>
 <br>
 
-<font size=4>Identities values are continuous values ranged from 0.0 to 1.0. These values are reworked and are labelized with values 0,1,... 10. Such transformation allows to consider identities as formed with qualitative groups. These labelized ranges of values may be interpreted as levels of the considered identity.
+<font size=4>Identities values are continuous values ranged from 0.0 to 1.0. These values are reworked and are labelized with values 0,1,... 10. Such transformation allows to consider identities as formed with qualitative groups. Modalities in any group are ranged from `0` to `10`. These labelized ranges of values may be interpreted as levels of the considered identity.
 </font>
 <br>
 
@@ -165,7 +166,7 @@ of identities over the toxicity variance</font>
 <center>* Variability of toxicity means along with level of female identity.*</center>
 <br>
 
-<font size=4>Means values are the means of toxicity computed for each group inside comments marked with `female` identity. </font>
+<font size=4>Means values are the means of toxicity computed for each group inside comments marked with `female` identity. All these statistics have been computed over toxicity grouped by identities.</font>
 <br>
 
 
@@ -173,7 +174,7 @@ of identities over the toxicity variance</font>
 <br>
 
 
-<font size=4>For any of the groups in the list above, **Levene** test is conducted. This test allows to validate **homodestaticity** hypothesis : variance in each group has equal value. This is the **H0  hypothesis stating over variance equality** between the groups of an identity. If Levene test is significant, considering p-value, then null hypothesis will be accepted and homodestaticity hypothesis will be valid. </font>
+<font size=4>For any of the groups in the list above, **Levene** test is conducted. p-values, nearly 0,  allows to invalidate **homodestaticity** hypothesis : variance in each group have no equal values. This is the **H0  hypothesis stating over variance equality** between the groups of an identity. Nevertheless, in order to balance conditions if Levene test, sampling has been processed in a such way that the **number of observations into each group is same**. Under this condition, ANOVA test may be conducted.</font>
 <br>
 
 <font size=4>Results are produced on the figure below: </font>
@@ -182,14 +183,14 @@ of identities over the toxicity variance</font>
 <center>* Analysis of variance with Levene hypothesis tests.*</center>
 <br>
 
-<font size=4>Levene test seems to be not significant for all identities except jewish group.  Nevertheless, for making F-stat robust considering **normality and homodestaticity hypothesis**, all groups inside each one of the identities have been sampled with the name number of observations. Then, for each identity, considering F-stat magnetude (that measures a ratio of the variability of the mean inside groups and the variability of the mean between groups) and associated p-value << 5.e-2 (that indicates how significant is the result of F-stat), test over differences of means between groups are **regarded as significant**.</font>
+<font size=4>Levene test seems to be not significant for all identities except jewish group.  Nevertheless, for making F-stat robust considering **normality and homodestaticity hypothesis**, all groups inside each one of the identities have been sampled with the same number of observations. Then, for each identity, considering F-stat magnetude (that measures a ratio of the variability of the mean inside groups and the variability of the mean between groups) and associated p-value << 5.e-2 (that indicates how significant is the result of F-stat), test over differences of means between groups are **regarded as significant**.</font>
 <br>
 
 <font size=4>**As a conclusion of ANOVA :** </font>
 
-* <font size=4>Considering `F-stat` values for all identities, there is a significant difference between means of groups, groups organized as levels of an identity.</font>
+* <font size=4>Considering `F-stat` values (variance in-between groups over within groups variance) for all identities, there is a significant difference between means of groups, groups organized as levels of an identity.</font>
 
-* <font size=4>Considering `R²` values for all identities, explained variance is very weakly for any  identity, leading to the conclusion that none of the identities have a size effect over comments toxicity.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspect of correlations between couples of features `(male, female)`<font size=4> and </font> `(black, white)`. </font>
+* <font size=4>Considering `R²` values for all identities, explained variance is weak for any identity (considering here as quantitative features), leading to the conclusion that **none of the identities have a size effect over comments toxicity**.  Correlation matrix here-under partially illustrates this claims. This correlation matrix has been built over the whole observations. We note a symetrix aspect of correlations between couples of features `(male, female)`<font size=4> and </font> `(black, white)`. </font>
 <font size=4>These features show a **middle size effect** for explaing target variance.</font>
 <br>
 
@@ -229,7 +230,7 @@ of identities over the toxicity variance</font>
 
 
 * <font size=4>
-R² value, 1.e-2 is a weak value. Correlation between toxiciy and identity is weak. There is no **linear relation** between jewish identity and toxicity. Correlation matrix here-under supports this conclusion :
+R² value, 1.e-2 is a weak value. Correlation between toxicity and identity is weak. There is no **linear relation** between jewish identity and toxicity. Correlation matrix supports this conclusion.
 
 </font>
 
@@ -242,7 +243,7 @@ From the column `P>|t|` the groups labelized 6, 7, 10 have significant differenc
 <br>
 <font size=4>
 Features have been splitted into two categories : contributors to toxicity of coments and identities.
-It has been shown that contributors to toxicity has a strong effect over the toxicity magnetude, whereas identities have a weak effect over toxicity. Unintended bias in machine learning classification comes with the fact that despite that last point, comments tend to be classified as toxic when they embedd  some identities terms or expressions.
+It has been shown that contributors to toxicity have a strong effect over the toxicity magnetude, whereas identities have a weak effect over toxicity. Unintended bias in machine learning classification comes with the fact that despite that last point, comments tend to be classified as toxic when they embedd  some identities terms or expressions.
 </font>
 <br>
 
