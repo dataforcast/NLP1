@@ -240,7 +240,7 @@ The global process is described below :</font>
 
 *   <font size=4>
     *   Spacy package is used for NLP processing. Using it, sequences of words are preserved using.<font>
-    *   Due to toxicity distribution study in previous sections, balancing dataset is required in order to ensure toxic and non toxic comments to be processed "equaly". Otherwise, contributions to cost function will be mainly due to non toxic comments that will lead to a biased prediction model. The picture above do represents a model obtained with Gradient boosting algorithm without dataset balancing. All non toxic comments are very well classified while predictions for toxic comments are not better then  random prediction leading to weak performances as shown over the RAUC curve.
+    *   Due to toxicity distribution study in previous sections, balancing dataset is required in order to ensure toxic and non toxic comments to be processed "equaly". Otherwise, contributions to cost function will be mainly due to non toxic comments that will lead to a biased prediction model. The picture below do represents a model obtained with Gradient boosting algorithm without dataset balancing. All non toxic comments are very well classified while predictions for toxic comments are not better then  random prediction leading to weak performances as shown over the RAUC curve.
 <center><img src="./report/Xgboost_unbalancedDataset.png" alt="Drawing" style="width: 200px;"/><img src="./report/Xgboost_unbalancedDataset_RAUC.png" alt="Drawing" style="width: 200px;"/></center>
 <center>* Gradient boosting algorithm binary classification performances with unbalanced classes *</center>
 <br>
