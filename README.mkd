@@ -445,6 +445,7 @@ by defining area under ROC curve.</font>
 *   <font size=4>`SUBGROUP_AUC` : the ability of the model to distinguish toxic comments from non toxic comments, all comments having references to identity.</font>
 <font>
 
+
 <br>
 <font size=4>While doing so, the classification model performance is scaned for each identity. Table below shows these three values, identity per identity.</font>
 
@@ -458,8 +459,9 @@ by defining area under ROC curve.</font>
 <font size=4>This probability of distinction is fare less then the ability of the model to distinguish from toxic comments without any reference to homosexual, gay or lebian and safe comments that contains sucg references : `SUBGROUP_AUC`= 0.76 < `BPSN_AUC= 0.82` .</font>
 
 <font size=4>The final score is computed thanks to the overall AUC that is `0.86` and the three aspects of AUC computed separately for each identity,  with the formula :</font>
+
 <br>
-<center><img src="./report/score_formula.png" alt="Drawing" style="width: 600px;"/></center>
+<center><img src="./ScoreFormula.png" alt="Drawing" style="width:200px;"/></center>
 
 <font size=4>Where :</font>
 
