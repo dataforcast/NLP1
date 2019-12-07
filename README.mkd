@@ -472,7 +472,7 @@ by defining area under ROC curve.</font>
 *   <font size=4>0.25 and 0.75 are weights factors that favor ability of the model to distinguish the toxicity of texts separately for each identity over global separability ability.</font>
 <br>
 
-<font size=4>**For the model to be submitted to Kaggle, this formula comes with value `0.79`** This may be interpreted as a bias value of `20%`</font>
+<font size=4>**For the model to be submitted to Kaggle, this formula comes with value `0.88`** This may be interpreted as a bias value of `12%`</font>
 
 
 
